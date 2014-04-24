@@ -1,0 +1,75 @@
+/* 
+    Document   : style
+    Created on : 16 déc. 2013, 21:30:43
+    Author     : MCarnaud
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+root { 
+    display: block;
+}
+.form-start
+{
+    margin-top: 12%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.titre-start
+{
+    text-align: center;
+}
+
+.cache
+{
+    margin-right: 5%; 
+}
+
+.menu-gauche
+{
+    height: 50px;
+    margin-top: 10%;
+    width: 200px;
+    margin-left: 1%;
+}
+
+.bande-gauche
+{
+    position: absolute;
+    background-color: gainsboro;
+    width: 205px;
+    height: 95%;
+
+
+}
+html {
+    height: 100%;
+}
+
+.nouveau
+{
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top:2%;
+}
+
+.ie2
+{
+    margin-left: 30%;
+}
+
+.ie1
+{
+    margin-left: 2%;
+}
+.recherche
+{
+    margin-left: 18%;
+    margin-right: 4%;
+    margin-top: 2%; 
+}
