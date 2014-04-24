@@ -2,6 +2,8 @@
 $titre = 'connection';
 include 'header.php';
 ?>
+
+		<!--TEST GITHUB COMMIT 3, a supprimer-->
         <div class="center-block form-start" >
         <form class="form-horizontal" role="form">
             <h2 class="titre-start">Connection</h2>
