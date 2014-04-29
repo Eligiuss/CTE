@@ -2,6 +2,7 @@
 $titre = 'Accueil';
 $active='index';
 include 'header.php';
+// c'est useless//
 ?>
 
 <div class="nouveau">
