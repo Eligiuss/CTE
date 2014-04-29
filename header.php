@@ -47,17 +47,17 @@ if ($titre == 'Connexion') {
             <ul class="nav nav-pills nav-stacked">
                 <?php
                     if($active=="index"){
-                        echo '<li class="active"><a href="accueil.php">Nouveau</a></li>'.
-                             '<li><a href="search.php">Rechercher</a></li>'.
-                             '<li><a href="syllabus.php">Syllabus</a></li>';
+                        echo '<li class="active"><a href="accueil.php">Nouveau</a></li>
+                              <li><a href="search.php">Rechercher</a></li>
+                              <li><a href="syllabus.php">Syllabus</a></li>';
                     } else if ($active=="search") {
-                        echo '<li><a href="accueil.php">Nouveau</a></li>'.
-                             '<li class="active"><a href="search.php">Rechercher</a></li>'.
-                             '<li><a href="syllabus.php">Syllabus</a></li>';
+                        echo '<li><a href="accueil.php">Nouveau</a></li>
+                              <li class="active"><a href="search.php">Rechercher</a></li>
+                              <li><a href="syllabus.php">Syllabus</a></li>';
                     } else if ($active=="syllabus") {
-                        echo '<li><a href="accueil.php">Nouveau</a></li>'.
-                             '<li><a href="search.php">Rechercher</a></li>'.
-                             '<li class="active"><a href="syllabus.php">Syllabus</a></li>';
+                        echo '<li><a href="accueil.php">Nouveau</a></li>
+                              <li><a href="search.php">Rechercher</a></li>
+                              <li class="active"><a href="syllabus.php">Syllabus</a></li>';
                     }
                 ?>
             </ul>

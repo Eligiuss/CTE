@@ -2,19 +2,60 @@
     $titre = 'Recherche';
     $active = 'search';
     include 'header.php';
+    
+    session_start();
 ?>
 
-<html>
-    <div class="recherche">
+<div class="recherche">
     <table class="table">
         <tr>
-            <td>Rechercher : <input type="text"/></td>
+            <th>Date</th>
+            <th>Promotion</th>
+            <th>Professeur</th>
+            <th>Matière</th>
+            <th>Contenu du cours</th>
+            <th>Interro</th>
         </tr>
-        <tr>
-            <td>Nom</td>
-            <td>test</td>
-            <td>test</td>
-        </tr>
-    </table>
-    </div>
-</html>
+<?php
+    $hote='127.0.0.1';
+    $user='root';
+    $passwd='';
+    $database='cte';
+    $cnx=new mysqli($hote,$user,$passwd,$database);
+    
+    $cnx->set_charset("utf8");
+    
+    $SQL = "SELECT c.*, m.nom matiere, u.nom prof FROM cours c
+            INNER JOIN utilisateur u ON c.id_prof = u.ID
+            INNER JOIN matiere m ON c.id_matiere = m.ID
+            WHERE id_prof = '".$_SESSION["ID"]."'
+            ORDER BY date DESC";
+    
+    $rs=$cnx->query($SQL);
+    
+    while($info=$rs->fetch_object()){
+        echo '  <tr>
+                    <td>
+                        '.$info->date.'
+                    </td>
+                    <td>
+                        '.$info->promo.'
+                    </td>
+                    <td>
+                        '.$info->prof.'
+                    </td>
+                    <td>
+                        '.$info->matiere.'
+                    </td>
+                    <td>
+                        '.$info->contenu.'
+                    </td>
+                    <td>
+                        '.$info->date.'
+                    </td>
+                </tr>
+            </table>
+        </div>';
+    }
+?>
+    

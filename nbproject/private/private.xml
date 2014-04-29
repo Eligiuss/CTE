@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/wamp/www/CTE/index.php</file>
+            <file>file:/C:/wamp/www/CTE/search.php</file>
             <file>file:/C:/wamp/www/CTE/css/style.css</file>
-            <file>file:/C:/wamp/www/CTE/tableau.php</file>
             <file>file:/C:/wamp/www/CTE/header.php</file>
+            <file>file:/C:/wamp/www/CTE/syllabus.php</file>
             <file>file:/C:/wamp/www/CTE/accueil.php</file>
             <file>file:/C:/wamp/www/CTE/login.php</file>
+            <file>file:/C:/wamp/www/CTE/logout.php</file>
             <file>file:/C:/wamp/www/CTE/js/script.js</file>
         </group>
     </open-files>

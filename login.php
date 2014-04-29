@@ -20,6 +20,7 @@
             session_start();
             $_SESSION['login'] = $_POST['email'];
             $_SESSION['password'] = $_POST['mdp'];
+            $_SESSION['ID'] = $info->ID;
             echo 'ok';
         } else {
             echo 'non';
