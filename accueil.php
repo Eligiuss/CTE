@@ -1,7 +1,7 @@
 <?php
-$titre = 'Accueil';
-$active='index';
-include 'header.php';
+    $titre = 'Accueil';
+    $active='index';
+    include 'header.php';
 ?>
 
 <div class="nouveau">

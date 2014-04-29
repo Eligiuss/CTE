@@ -28,12 +28,19 @@
     $SQL = "SELECT c.*, m.nom matiere, u.nom prof FROM cours c
             INNER JOIN utilisateur u ON c.id_prof = u.ID
             INNER JOIN matiere m ON c.id_matiere = m.ID
+            INNER JOIN interro i ON c.id_interro = i.ID
             WHERE id_prof = '".$_SESSION["ID"]."'
             ORDER BY date DESC";
     
     $rs=$cnx->query($SQL);
     
     while($info=$rs->fetch_object()){
+        if($info->id_interro!==''){
+            $interro = "Oui";
+        } else {
+            $interro = "Non";
+        }
+        
         echo '  <tr>
                     <td>
                         '.$info->date.'
@@ -51,7 +58,7 @@
                         '.$info->contenu.'
                     </td>
                     <td>
-                        '.$info->date.'
+                        '.$interro.'
                     </td>
                 </tr>
             </table>
