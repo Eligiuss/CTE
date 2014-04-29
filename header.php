@@ -10,6 +10,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css"/>
         <link rel="stylesheet" href="css/style.css"/>
+        <script src="js/script.js"></script>
+        <script src="js/jquery.js"></script>
         <title><?php echo $titre; ?></title>
     </head> 
     <body>
@@ -26,24 +28,38 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <form class="navbar-form navbar-right cache" role="search">
-                <button type="submit" class="btn btn-default">Déconnection</button>
-            </form>
+            <?php
+                if($titre !== 'Connexion') {
+                    echo '<input type="button" class="btn btn-default" id="logout" value="Déconnexion" onclick="location.href=\'logout.php\'" />';
+                }
+            ?>
         </li>
     </ul>
 </div><!-- /.navbar-collapse -->
 </nav>
 <?php
-if ($titre == 'connection') {
-    echo 'Vous n\'ètes pas connecté'; 
+if ($titre == 'Connexion') {
+    echo 'Vous n\'êtes pas connecté'; 
 } else {
     ?>
     <div class="bande-gauche">
         <div class="menu-gauche" >
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Nouveau</a></li>
-                <li><a href="#">Rechercher</a></li>
+                <?php
+                    if($active=="index"){
+                        echo '<li class="active"><a href="accueil.php">Nouveau</a></li>'.
+                             '<li><a href="search.php">Rechercher</a></li>'.
+                             '<li><a href="syllabus.php">Syllabus</a></li>';
+                    } else if ($active=="search") {
+                        echo '<li><a href="accueil.php">Nouveau</a></li>'.
+                             '<li class="active"><a href="search.php">Rechercher</a></li>'.
+                             '<li><a href="syllabus.php">Syllabus</a></li>';
+                    } else if ($active=="syllabus") {
+                        echo '<li><a href="accueil.php">Nouveau</a></li>'.
+                             '<li><a href="search.php">Rechercher</a></li>'.
+                             '<li class="active"><a href="syllabus.php">Syllabus</a></li>';
+                    }
+                ?>
             </ul>
         </div>
     </div>

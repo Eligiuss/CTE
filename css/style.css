@@ -67,9 +67,16 @@ html {
 {
     margin-left: 2%;
 }
+
 .recherche
 {
     margin-left: 18%;
     margin-right: 4%;
     margin-top: 2%; 
+}
+
+#logout{
+    float:right;
+    margin-top:8px;
+    margin-right:8px;
 }

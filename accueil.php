@@ -1,9 +1,9 @@
 <?php
-$titre = 'accueil';
+$titre = 'Accueil';
+$active='index';
 include 'header.php';
 ?>
 
-<!-- GITHUB TEST -->
 <div class="nouveau">
     <form role="form">
         <h2 class="text-center">Nouveau</h2>
