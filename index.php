@@ -1,8 +1,10 @@
 <?php
     $titre = 'Connexion';
     include 'header.php';
+     //nkjfnklZKBIUzr
 ?>
 <html>
+   
     <body>
         <div class="center-block form-start" >
             <form class="form-horizontal" role="form">
