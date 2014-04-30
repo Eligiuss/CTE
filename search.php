@@ -17,13 +17,7 @@
             <th>Interro</th>
         </tr>
 <?php
-    $hote='127.0.0.1';
-    $user='root';
-    $passwd='';
-    $database='cte';
-    $cnx=new mysqli($hote,$user,$passwd,$database);
-    
-    $cnx->set_charset("utf8");
+    include 'Connection_BDD.php';
     
     $SQL = "SELECT c.*, m.nom matiere, u.nom prof FROM cours c
             INNER JOIN utilisateur u ON c.id_prof = u.ID

@@ -1,7 +1,7 @@
 <?php
-    $titre = 'Accueil';
-    $active='index';
-    include 'header.php';
+$titre = 'Accueil';
+$active = 'index';
+include 'header.php';
 ?>
 
 <div class="nouveau">
@@ -14,7 +14,19 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Matière</label>
-            <select class="form-control"><?php ?></select>
+            <select class="form-control">
+                <?php
+                include 'Connection_BDD.php';
+                
+                $SQL = "SELECT * FROM matiere";
+                
+                $rs=$cnx->query($SQL);
+    
+                while($info=$rs->fetch_object()){
+                    echo '<option value"'.$info->id.'">'.$info->nom.'</option>';
+                }
+                ?>
+            </select>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Contenu du cours    </label>
