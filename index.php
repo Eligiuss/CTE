@@ -1,7 +1,6 @@
 <?php
     $titre = 'Connexion';
     include 'header.php';
-     //nkjfLOL ELOInklZKBIUzr
 ?>
 <html>
    

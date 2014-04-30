@@ -6,8 +6,11 @@
     session_start();
 ?>
 
-<div class="recherche">
-    <table class="table">
+
+    <table class="table table-hover" id="tableSearch">
+        <tr>
+            <th colspan="6">Filtre</th>
+        </tr>
         <tr>
             <th>Date</th>
             <th>Promotion</th>
@@ -55,8 +58,7 @@
                         '.$interro.'
                     </td>
                 </tr>
-            </table>
-        </div>';
+            </table>';
     }
 ?>
     
