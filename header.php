@@ -13,7 +13,7 @@
         <script src="js/jquery.js"></script>
         <script src="js/script.js"></script>
         <title><?php echo $titre; ?></title>
-    </head> 
+    </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,28 +38,23 @@
 </div><!-- /.navbar-collapse -->
 </nav>
 <?php
-if ($titre == 'Connexion') {
-    echo 'Vous n\'êtes pas connecté'; 
-} else {
-    ?>
+    if ($titre == 'Connexion') {
+        echo 'Vous n\'êtes pas connecté'; 
+    } else {
+?>
     <div class="bande-gauche">
         <div class="menu-gauche" >
             <ul class="nav nav-pills nav-stacked">
-                <?php
-                    if($active=="index"){
-                        echo '<li class="active"><a href="accueil.php">Nouveau</a></li>
-                              <li><a href="search.php">Rechercher</a></li>
-                              <li><a href="syllabus.php">Syllabus</a></li>';
-                    } else if ($active=="search") {
-                        echo '<li><a href="accueil.php">Nouveau</a></li>
-                              <li class="active"><a href="search.php">Rechercher</a></li>
-                              <li><a href="syllabus.php">Syllabus</a></li>';
-                    } else if ($active=="syllabus") {
-                        echo '<li><a href="accueil.php">Nouveau</a></li>
-                              <li><a href="search.php">Rechercher</a></li>
-                              <li class="active"><a href="syllabus.php">Syllabus</a></li>';
-                    }
-                ?>
+                <h4 class="titreSection">COURS</h4>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/accueil.php") echo "class='active'"; ?>><a href="accueil.php">Nouveau</a></li>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/search.php") echo "class='active'"; ?>><a href="search.php">Rechercher</a></li>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/syllabus.php") echo "class='active'"; ?>><a href="syllabus.php">Syllabus</a></li>
+                <br/><br/><br/>
+                
+                <h4 class="titreSection">ADMINISTRATION</h4>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/user.php") echo "class='active'"; ?>><a href="user.php">Gestion des utilisateurs</a></li>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/historique.php") echo "class='active'"; ?>><a href="historique.php">Historique</a></li>
+                <br/>
             </ul>
         </div>
     </div>

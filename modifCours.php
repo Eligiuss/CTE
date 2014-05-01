@@ -1,12 +1,22 @@
 <?php
-$titre = 'Accueil';
-include('header.php');
-include('connection_BDD.php');
+    $titre='Modifier un cours';
+    include('header.php');
+    include('connection_BDD.php');
+    
+    $SQL = "SELECT * FROM cours
+            WHERE ID = '".$_GET["id"]."' ";
+    $rs=$cnx->query($SQL);
+    
+    while($info=$rs->fetch_object()){
+        $test = $info->travail;
+    }
 ?>
+
+
 
 <div class="nouveau">
     <div id="formNouveau">
-        <h2 class="text-center">Nouveau cours</h2>
+        <h2 class="text-center">Modifier un cours</h2>
         </br>
         
         <div class="form-group">
@@ -66,4 +76,6 @@ include('connection_BDD.php');
 </div>
 
 </body>
-</html>
+</html> 
+    
+

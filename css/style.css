@@ -47,6 +47,11 @@ root {
     width: 205px;
     height: 95%;
 }
+
+.titreSection{
+    text-align:center;
+}
+
 html {
     height: 100%;
 }
@@ -90,10 +95,14 @@ html {
     height:5%;
 }
 
-#tableSearch{
+.tableListe{
     margin-left:205px;
     width:calc(100% - 205px);
     width:88%\9; /*Pour IE 7,8,9*/
+}
+
+.tableListe td:hover{
+    cursor: pointer;
 }
 
 .table tbody tr:hover th {

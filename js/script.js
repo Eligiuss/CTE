@@ -24,7 +24,7 @@ function login(){
                     return;
                 }
             }
-    })
+    });
 }
 
 function save(){
@@ -32,7 +32,7 @@ function save(){
     var matiere = document.getElementById('matiere'); //Le <select> matiere
     var id_matiere = matiere.options[matiere.selectedIndex].value; //La valeur de l'option choisie
     var promoOption = document.getElementById('promo'); //Le <select> promo
-    var promo = promoOption.options[promoOption.selectedIndex].text //Le texte de l'option choisie
+    var promo = promoOption.options[promoOption.selectedIndex].text; //Le texte de l'option choisie
     var contenu = document.getElementById('contenu').value;
     var travail = document.getElementById('travail').value;
     
@@ -60,5 +60,9 @@ function save(){
                     return;
                 }
             }
-    })
+    });
+}
+
+function addUser(){
+    alert("test");
 }

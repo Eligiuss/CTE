@@ -1,13 +1,12 @@
 <?php
     $titre = 'Recherche';
-    $active = 'search';
     include 'header.php';
     
     session_start();
 ?>
 
 
-    <table class="table table-hover" id="tableSearch">
+    <table class="table table-hover tableListe">
         <tr>
             <th colspan="6">Filtre</th>
         </tr>
@@ -58,7 +57,7 @@
             $interro = "Non";
         }
         
-        echo '  <tr>
+        echo '  <tr onclick="window.location.replace(\'modifCours.php?id='.$info->ID.'\')">
                     <td>
                         '.$info->date.'
                     </td>
