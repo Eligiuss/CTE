@@ -7,8 +7,28 @@
             WHERE ID = '".$_GET["id"]."' ";
     $rs=$cnx->query($SQL);
     
-    while($info=$rs->fetch_object()){
-        $test = $info->travail;
+    while($info=$rs->fetch_object()) {
+        $date = $info->date;
+        $contenu = $info->contenu;
+        $travail = $info->travail;
+        $promo = $info->promo;
+        $id_matiere = $info->id_matiere;
+    }
+    
+    $SQL2 = "SELECT nom FROM matiere
+             WHERE ID = '".$id_matiere."' ";
+    $rs2=$cnx->query($SQL2);
+    
+    while($info=$rs2->fetch_object()) {
+        $matiere = $info->nom;
+    }
+    
+    $SQL3 = "SELECT ID FROM promo
+             WHERE nom = '".$promo."' ";
+    $rs3=$cnx->query($SQL3);
+    
+    while($info=$rs3->fetch_object()) {
+        $id_promo = $info->ID;
     }
 ?>
 
@@ -21,7 +41,9 @@
         
         <div class="form-group">
             <label for="date">Date</label>
-            <input class="form-control" id="date" value="<?php echo date('d/m/Y'); ?>">
+            <?php
+                    echo '<input class="form-control" id="date" value="'.$date.'">';
+            ?>
         </div>
         
         <div class="form-group">
@@ -30,10 +52,13 @@
                 <?php
                     include 'Connection_BDD.php';
                     
-                    $SQL = "SELECT ID,nom FROM matiere";
-                    $rs=$cnx->query($SQL);
+                    $SQL4 = "SELECT ID,nom FROM matiere
+                             WHERE ID != '".$id_matiere."' ";
+                    $rs4=$cnx->query($SQL4);
+                    
+                    echo '  <option value="'.$id_matiere.'">'.$matiere.'</option>';
 
-                    while($info=$rs->fetch_object()){
+                    while($info=$rs4->fetch_object()){
                         echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
                     }
                 ?>
@@ -44,10 +69,13 @@
             <label for="promo">Promotion</label>
             <select id="promo" class="form-control">
                 <?php
-                    $SQL = "SELECT ID,nom FROM promo";
-                    $rs=$cnx->query($SQL);
-
-                    while($info=$rs->fetch_object()){
+                    $SQL5 = "SELECT ID,nom FROM promo
+                             WHERE nom !='".$promo."'; ";
+                    $rs5=$cnx->query($SQL5);
+                    
+                    echo '  <option value="'.$id_promo.'">'.$promo.'</option>';
+                    
+                    while($info=$rs5->fetch_object()){
                         echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
                     }
                 ?>
@@ -56,12 +84,12 @@
         
         <div class="form-group">
             <label for="contenu">Contenu du cours</label>
-            <textarea id="contenu" class="form-control"></textarea>
+            <textarea id="contenu" class="form-control"><?php echo $contenu; ?></textarea>
         </div>
      
         <div class="form-group">
            <label for="travail">Travail donné</label>
-            <textarea id="travail" class="form-control"></textarea>
+           <textarea id="travail" class="form-control"><?php echo $travail; ?></textarea>
         </div>
         
         <div class="form-group">
@@ -71,7 +99,7 @@
             </div>
         </div>
         
-        <button type="button" onclick="save()" class="btn btn-default">Sauvegarder</button>
+        <button type="button" onclick="modif(<?php echo $_GET["id"] ?>)" class="btn btn-default">Sauvegarder</button>
     </div>
 </div>
 

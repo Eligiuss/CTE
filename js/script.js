@@ -63,6 +63,43 @@ function save(){
     });
 }
 
+function modif(id_cours){
+    var date = document.getElementById('date').value;
+    var matiere = document.getElementById('matiere'); //Le <select> matiere
+    var id_matiere = matiere.options[matiere.selectedIndex].value; //La valeur de l'option choisie
+    var promoOption = document.getElementById('promo'); //Le <select> promo
+    var promo = promoOption.options[promoOption.selectedIndex].text; //Le texte de l'option choisie
+    var contenu = document.getElementById('contenu').value;
+    var travail = document.getElementById('travail').value;
+    
+    if(contenu==''){
+        alert('Veuillez entrer le contenu du cours.');
+        document.getElementById('contenu').focus();
+        return;
+    }
+    
+    $.ajax({url: 'modif.php',
+            data:{
+                date: date,
+                id_matiere: id_matiere,
+                id_cours: id_cours,
+                promo: promo,
+                contenu: contenu,
+                travail: travail
+            },
+            type: 'POST',
+            success: function(response){
+                if(response == "ok"){
+                    alert('Le cours a été modifié.');
+                    window.location.replace('search.php');
+                } else {
+                    alert('La modification du cours a échoué.');
+                    return;
+                }
+            }
+    });
+}
+
 function addUser(){
     alert("test");
 }

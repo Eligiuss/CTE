@@ -16,6 +16,7 @@
             <th>Professeur</th>
             <th>Matière</th>
             <th>Contenu du cours</th>
+            <th>Travail donné</th>
             <th>Interro</th>
         </tr>
 <?php
@@ -71,7 +72,10 @@
                         '.$info->matiere.'
                     </td>
                     <td>
-                        '.truncate($info->contenu,100).'
+                        '.truncate($info->contenu,80).'
+                    </td>
+                    <td>
+                        '.truncate($info->travail,50).'
                     </td>
                     <td>
                         '.$interro.'

@@ -1,7 +1,7 @@
 <?php
-$titre = 'Accueil';
-include('header.php');
-include('connection_BDD.php');
+    $titre = 'Accueil';
+    include('header.php');
+    include('connection_BDD.php');
 ?>
 
 <div class="nouveau">
