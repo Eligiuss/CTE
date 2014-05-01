@@ -10,9 +10,9 @@
                 <h2 class="titre-start">Connexion</h2>
                 </br>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Login</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Login">
                     </div>
                 </div>
                 <div class="form-group">
