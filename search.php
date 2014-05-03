@@ -1,14 +1,12 @@
 <?php
     $titre = 'Recherche';
     include 'header.php';
-    
-    session_start();
 ?>
 
 
     <table class="table table-hover tableListe">
         <tr>
-            <th colspan="6">Filtre</th>
+            <th colspan="7">Filtre</th>
         </tr>
         <tr>
             <th>Date</th>
@@ -35,17 +33,17 @@
 
     include 'Connection_BDD.php';
     
-    if($_SESSION["ID"]=='1'){ //Si l'utilisateur connecté est un administrateur, on affiche tous les cours
+    if($_SESSION["type"]=='1'){ //Si l'utilisateur connecté est un administrateur, on affiche tous les cours
         $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf FROM cours c
-            INNER JOIN utilisateur u ON c.id_prof = u.ID
-            INNER JOIN matiere m ON c.id_matiere = m.ID   
-            ORDER BY date DESC";
+                INNER JOIN utilisateur u ON c.id_prof = u.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID   
+                ORDER BY date DESC";
     } else {
         $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf FROM cours c
-            INNER JOIN utilisateur u ON c.id_prof = u.ID
-            INNER JOIN matiere m ON c.id_matiere = m.ID   
-            WHERE id_prof = '".$_SESSION["ID"]."'
-            ORDER BY date DESC";
+                INNER JOIN utilisateur u ON c.id_prof = u.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID   
+                WHERE id_prof = '".$_SESSION["ID"]."'
+                ORDER BY date DESC";
     }
     
     
@@ -58,7 +56,7 @@
             $interro = "Non";
         }
         
-        echo '  <tr onclick="window.location.replace(\'modifCours.php?id='.$info->ID.'\')">
+        echo '  <tr onclick="window.location=\'modifCours.php?id='.$info->ID.'\')">
                     <td>
                         '.$info->date.'
                     </td>

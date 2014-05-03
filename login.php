@@ -17,6 +17,7 @@
             $_SESSION['login'] = $_POST['email'];
             $_SESSION['password'] = $_POST['mdp'];
             $_SESSION['ID'] = $info->ID;
+            $_SESSION['type'] = $info->type;
             $_SESSION['nom_user']= $info->nom;
             $_SESSION['prenom_user']= $info->prenom;
             echo 'ok';

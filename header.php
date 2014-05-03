@@ -46,15 +46,21 @@
         <div class="menu-gauche" >
             <ul class="nav nav-pills nav-stacked">
                 <h4 class="titreSection">COURS</h4>
-                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/accueil.php") echo "class='active'"; ?>><a href="accueil.php">Nouveau</a></li>
-                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/search.php") echo "class='active'"; ?>><a href="search.php">Rechercher</a></li>
+                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/accueil.php") echo "class='active'"; ?>><a href="accueil.php">Nouveau</a></li> <!--Si la page actuelle est 'accueil.php', on ajoute la classe 'active' à l'élément-->
+                <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/search.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifCours.php")) echo "class='active'"; ?>><a href="search.php">Rechercher</a></li>
                 <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/syllabus.php") echo "class='active'"; ?>><a href="syllabus.php">Syllabus</a></li>
                 <br/><br/><br/>
                 
-                <h4 class="titreSection">ADMINISTRATION</h4>
-                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/user.php") echo "class='active'"; ?>><a href="user.php">Gestion des utilisateurs</a></li>
-                <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/historique.php") echo "class='active'"; ?>><a href="historique.php">Historique</a></li>
-                <br/>
+                <?php
+                    if($_SESSION['type']=='1'){ //SECTION VISIBLE UNIQUEMENT PAR LES ADMINS
+                ?>
+                        <h4 class="titreSection">ADMINISTRATION</h4>
+                        <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/user.php") || ($_SERVER['PHP_SELF'] == "/CTE/addUser.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifUser.php")) echo "class='active'"; ?>><a href="user.php">Gestion des utilisateurs</a></li>
+                        <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/historique.php") echo "class='active'"; ?>><a href="historique.php">Historique</a></li>
+                        <br/>
+                <?php
+                    } //FIN SECTION ADMIN
+                ?>
             </ul>
         </div>
     </div>
