@@ -62,7 +62,7 @@ html {
     margin-left:205px;
 }
 
-#formNouveau{
+.milieuPage{
     align:center;
     margin-left:20%;
     margin-right:20%;
@@ -88,7 +88,7 @@ html {
 #logout{
     float:right;
     margin-top:8px;
-    margin-right:8px;
+    margin-right:24px;
 }
 
 .navbar-default{

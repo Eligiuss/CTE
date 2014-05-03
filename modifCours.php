@@ -35,7 +35,7 @@
 
 
 <div class="nouveau">
-    <div id="formNouveau">
+    <div class="milieuPage">
         <h2 class="text-center">Modifier un cours</h2>
         </br>
         
@@ -99,7 +99,8 @@
             </div>
         </div>
         
-        <button type="button" onclick="modif(<?php echo $_GET["id"] ?>)" class="btn btn-default">Sauvegarder</button>
+        <button type="button" onclick="saveCours(<?php echo $_GET["id"] ?>)" class="btn btn-default">Sauvegarder</button>
+        <button type="button" onclick="window.location='search.php'" class="btn btn-default">Annuler</button>
     </div>
 </div>
 

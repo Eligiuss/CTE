@@ -13,17 +13,18 @@
             <th>Type</th>
         </tr>
 <?php
-    $SQL = "SELECT * FROM utilisateur";
+    $SQL = "SELECT * FROM utilisateur
+            ORDER BY nom ASC";
     $rs=$cnx->query($SQL);
     
     while($info=$rs->fetch_object()){
         if($info->type=='1'){
             $type = "Administrateur";
         } else {
-            $interro = "Professeur";
+            $type = "Professeur";
         }
         
-        echo '  <tr>
+        echo '  <tr onclick="window.location=\'modifUser.php?id='.$info->ID.'\'">
                     <td>
                         '.$info->nom.'
                     </td>
@@ -45,4 +46,4 @@
     echo '</table>';
 ?>
     
-    <input type="button" class="btn btn-default center-block" onclick="addUser()" value="Ajouter un utilisateur" />
+    <input type="button" class="btn btn-default center-block" onclick="window.location = 'addUser.php'" value="Ajouter un utilisateur" />

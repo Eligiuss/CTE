@@ -5,7 +5,7 @@
 ?>
 
 <div class="nouveau">
-    <div id="formNouveau">
+    <div class="milieuPage">
         <h2 class="text-center">Nouveau cours</h2>
         </br>
         
@@ -61,7 +61,7 @@
             </div>
         </div>
         
-        <button type="button" onclick="save()" class="btn btn-default">Sauvegarder</button>
+        <button type="button" onclick="saveCours()" class="btn btn-default">Sauvegarder</button>
     </div>
 </div>
 

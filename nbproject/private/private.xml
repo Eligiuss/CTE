@@ -7,11 +7,15 @@
             <file>file:/C:/wamp/www/CTE/search.php</file>
             <file>file:/C:/wamp/www/CTE/css/style.css</file>
             <file>file:/C:/wamp/www/CTE/header.php</file>
-            <file>file:/C:/wamp/www/CTE/syllabus.php</file>
+            <file>file:/C:/wamp/www/CTE/modifCours.php</file>
             <file>file:/C:/wamp/www/CTE/accueil.php</file>
+            <file>file:/C:/wamp/www/CTE/syllabus.php</file>
+            <file>file:/C:/wamp/www/CTE/save.php</file>
+            <file>file:/C:/wamp/www/CTE/modif.php</file>
+            <file>file:/C:/wamp/www/CTE/user.php</file>
             <file>file:/C:/wamp/www/CTE/login.php</file>
-            <file>file:/C:/wamp/www/CTE/logout.php</file>
             <file>file:/C:/wamp/www/CTE/js/script.js</file>
+            <file>file:/C:/wamp/www/CTE/logout.php</file>
         </group>
     </open-files>
 </project-private>
