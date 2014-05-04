@@ -6,7 +6,7 @@
 
     <table class="table table-hover tableListe">
         <tr>
-            <th colspan="6">Filtre :</th>
+            <th colspan="7">Filtre :</th>
         </tr>
          <tr>
         <th>Date(calendrier a faire)</th>

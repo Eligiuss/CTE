@@ -63,7 +63,7 @@
             <input type="text" class="form-control" readonly id="sujet" placeholder="Sujet..." />
         </div>
         
-        <button type="button" onclick="saveCours()" class="btn btn-default">Sauvegarder</button>
+        <button type="button" onclick="saveCours()" class="btn btn-success">Sauvegarder</button>
     </div>
 </div>
 

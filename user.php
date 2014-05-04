@@ -5,13 +5,15 @@
 ?>
 
     <table class="table table-hover tableListe">
-        <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Nom d'utilisateur</th>
-            <th>Mot de passe</th>
-            <th>Type</th>
-        </tr>
+        <thead>
+            <tr class="info">
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Nom d'utilisateur</th>
+                <th>Mot de passe</th>
+                <th>Type</th>
+            </tr>
+        </thead>
 <?php
     $SQL = "SELECT * FROM utilisateur
             ORDER BY nom ASC";
@@ -46,4 +48,4 @@
     echo '</table>';
 ?>
     
-    <input type="button" class="btn btn-default center-block" onclick="window.location = 'addUser.php'" value="Ajouter un utilisateur" />
+    <input type="button" class="btn btn-primary btn-lg center-block" onclick="window.location = 'addUser.php'" value="Ajouter un utilisateur" />

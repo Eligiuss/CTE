@@ -115,8 +115,9 @@
             <input type="text" class="form-control" value="<?php echo $sujet; ?>" <?php if($sujet=='') echo 'readonly'; ?> id="sujet" placeholder="Sujet..." />
         </div>
         
-        <button type="button" onclick="saveCours(<?php echo $_GET["id"] ?>)" class="btn btn-default">Sauvegarder</button>
-        <button type="button" onclick="window.location='search.php'" class="btn btn-default">Annuler</button>
+        <button type="button" onclick="saveCours(<?php echo $_GET["id"] ?>)" class="btn btn-success btn-lg">Sauvegarder</button>
+        <button type="button" onclick="window.location='search.php'" class="btn btn-default btn-lg">Annuler</button>
+        <button type="button" onclick="delCours(<?php echo $_GET["id"] ?>)" class="btn btn-danger btn-lg" style="float:right">Supprimer</button>
     </div>
 </div>
 

@@ -12,13 +12,15 @@
     $id_prof = $_SESSION["ID"];
     $id_matiere= $_POST["id_matiere"];
     $id_cours = $_POST["id_cours"];
-    $modifActionInterro = $_POST["modifActionInterro"];
+    $interroChecked = $_POST["interroChecked"];
     
     if($id_cours==''){ //Si on a pas d'id cours, on ajoute un nouveau cours
-       
-        $SQL = "INSERT INTO interro (libelle, etat, date, promo)
-                VALUES ('".$sujet."', '0', '".$date."', '".$promo."') ";
-        $rs=$cnx->query($SQL);
+        
+        if($interroChecked=='1'){
+            $SQL = "INSERT INTO interro (libelle, etat, date, promo)
+                    VALUES ('".$sujet."', '0', '".$date."', '".$promo."') ";
+            $rs=$cnx->query($SQL);
+        }
         
         $SQL2 = "INSERT INTO cours (id_prof,id_matiere,id_interro,promo,travail,date,date_butoir,contenu)
                 VALUES ('".$id_prof."', '".$id_matiere."', '".mysqli_insert_id($cnx)."',
@@ -27,7 +29,7 @@
         
     } else { //Si on a une id cours, on modifie le cours existant
         
-        if($modifActionInterro=='modif'){
+        if($interroChecked=='1'){
             if($id_interro=='0'){ //Si le cours n'est pas associé à une interro, on en rajoute une
                 $SQL = "INSERT INTO interro (libelle, etat, date, promo)
                         VALUES ('".$sujet."', '0', '".$date."', '".$promo."') ";
@@ -36,7 +38,7 @@
                         SET libelle='".$sujet."', date='".$date."', promo='".$promo."'
                         WHERE ID = '".$id_interro."' ";
             }
-        } else if ($modifActionInterro=='delete'){
+        } else if ($interroChecked=='0'){
             $SQL = "DELETE FROM interro
                     WHERE ID = '".$id_interro."' ";
         }
@@ -49,13 +51,13 @@
                         travail='".$travail."', date_butoir='".$dateButoir."',
                         date='".$date."', contenu='".$contenu."'
                     WHERE ID = '".$id_cours."' ";
-        } else if($id_interro!='0' && $modifActionInterro=='modif') {
+        } else if($id_interro!='0' && $interroChecked=='1') {
             $SQL2 = "UPDATE cours
                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
                         promo='".$promo."', travail='".$travail."',
                         date_butoir='".$dateButoir."',date='".$date."', contenu='".$contenu."'
                     WHERE ID = '".$id_cours."' ";
-        } else if($id_interro!='0' && $modifActionInterro=='delete') {
+        } else if($id_interro!='0' && $interroChecked=='0') {
             $SQL2 = "UPDATE cours
                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
                         promo='".$promo."', travail='".$travail."', id_interro='0',

@@ -64,9 +64,9 @@ function saveCours(id){
     }
     
     if(document.getElementById('interro').checked){
-        var modifActionInterro = 'modif'; //Si on modifie le cours et que la case interro est cochée : on modifiera l'interro
+        var interroChecked = '1'; //Case interro cochée
     } else {
-        var modifActionInterro = 'delete'; //Si on modifie le cours et que la case interro est décochée : on supprimera l'interro
+        var interroChecked = '0'; //Case interro décochée
     }
     
     if(id==undefined){
@@ -84,7 +84,7 @@ function saveCours(id){
                 sujet: sujet,
                 id_cours: id,
                 id_interro: id_interro,
-                modifActionInterro: modifActionInterro
+                interroChecked: interroChecked
             },
             type: 'POST',
             success: function(response){
@@ -149,4 +149,58 @@ function readonlySujet(){
         } else {
             document.getElementById('sujet').readOnly = true;
         }
+}
+
+function corrigerInterro(id){
+    $.ajax({url: 'corrigerInterro.php',
+            data:{
+                id:id
+            },
+            type: 'POST',
+            success: function(response){
+                if(response == "ok"){
+                    window.location.reload();
+                }
+            }
+    });
+}
+
+function delCours(id){
+    var areYouSure = confirm('Voulez-vous vraiment supprimer ce cours ?');
+    
+    if (areYouSure == true) {
+        $.ajax({url: 'delCours.php',
+            data:{
+                id:id
+            },
+            type: 'POST',
+            success: function(response){
+                if(response == "ok"){
+                    window.location = 'search.php';
+                }
+            }
+        });
+    } else {
+        return;
+    }
+}
+
+function delUser(id){
+    var areYouSure = confirm('Voulez-vous vraiment supprimer cet utilisateur ?');
+    
+    if (areYouSure == true) {
+        $.ajax({url: 'delUser.php',
+            data:{
+                id:id
+            },
+            type: 'POST',
+            success: function(response){
+                if(response == "ok"){
+                    window.location = 'user.php';
+                }
+            }
+        });
+    } else {
+        return;
+    }
 }

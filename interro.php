@@ -2,19 +2,7 @@
     $titre='Interrogations';
     include('header.php');
     include('connection_BDD.php');
-?>
-
-<table class="table table-hover tableListe">
-        <tr>
-            <th style="text-align: center" colspan="4">NON CORRIGÉES</th>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <th>Matière</th>
-            <th>Promotion</th>
-            <th>Sujet</th>
-        </tr>
-<?php
+    
     function truncate($value,$length){
         if(strlen($value)>$length){
         $value=substr($value,0,$length);
@@ -27,14 +15,40 @@
         }
         return $value;
     }
+?>
+
+<!--TABLE 1-->
+<table class="table table-hover" id="tableInterro1">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="6">NON CORRIGÉES</th>
+        </tr>
+        <tr class="info">
+            <th>Date</th>
+            <th>Matière</th>
+            <th>Promotion</th>
+            <th>Sujet</th>
+            <th>Corrigée</th>
+            <?php if($_SESSION["type"]==1) echo "<th>Professeur</th>"; ?>
+        </tr>
+    </thead>
     
-    
-    $SQL = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro FROM cours c
-            INNER JOIN interro i ON c.id_interro = i.ID
-            INNER JOIN matiere m ON c.id_matiere = m.ID
-            WHERE id_prof = '".$_SESSION["ID"]."'
-            AND i.etat = '0'
-            ORDER BY date DESC";
+<?php
+    if($_SESSION['type']=='1'){
+        $SQL = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id, u.nom nomProf, u.prenom prenomProf FROM cours c
+                INNER JOIN interro i ON c.id_interro = i.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID
+                INNER JOIN utilisateur u ON C.id_prof = u.ID
+                AND i.etat = '0'
+                ORDER BY date DESC";
+    } else {
+        $SQL = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id FROM cours c
+                INNER JOIN interro i ON c.id_interro = i.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID
+                WHERE id_prof = '".$_SESSION["ID"]."'
+                AND i.etat = '0'
+                ORDER BY date DESC";
+    }
         
     $rs=$cnx->query($SQL);
     
@@ -46,7 +60,7 @@
             $interro = "";
         }
         
-        echo '  <tr onclick="window.location=\'modifCours.php?id='.$info->ID.'\'">
+        echo '  <tr class="danger">
                     <td>
                         '.$info->date.'
                     </td>
@@ -59,7 +73,87 @@
                     <td>
                         '.truncate($info->sujet,80).'
                     </td>
-                </tr>';
+                    <td>
+                        <input type="checkbox" class="checkbox" onclick="corrigerInterro('.$info->interro_id.')" />
+                    </td>';
+            if($_SESSION["type"]=='1'){
+                echo '<td>'.$info->prenomProf.' '.$info->nomProf.'</td>';
+            }
+          echo '</tr>';
+    }
+    
+    echo '</table>';
+?>
+
+    
+    
+    
+    
+    
+    
+<!--TABLE 2-->
+<table class="table table-hover" id="tableInterro2">
+    <thead>
+        <tr>
+            <th style="text-align: center" colspan="6">CORRIGÉES</th>
+        </tr>
+        <tr class="info">
+            <th>Date</th>
+            <th>Matière</th>
+            <th>Promotion</th>
+            <th>Sujet</th>
+            <th>Corrigée</th>
+            <?php if($_SESSION["type"]==1) echo "<th>Professeur</th>"; ?>
+        </tr>
+    </thead>
+    
+<?php
+    if($_SESSION['type']=='1'){
+        $SQL2 = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id, u.nom nomProf, U.prenom prenomProf FROM cours c
+                INNER JOIN interro i ON c.id_interro = i.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID
+                INNER JOIN utilisateur u ON C.id_prof = u.ID
+                AND i.etat = '1'
+                ORDER BY date DESC";
+    } else {
+        $SQL2 = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id FROM cours c
+                INNER JOIN interro i ON c.id_interro = i.ID
+                INNER JOIN matiere m ON c.id_matiere = m.ID
+                WHERE id_prof = '".$_SESSION["ID"]."'
+                AND i.etat = '1'
+                ORDER BY date DESC";
+    }
+        
+    $rs2=$cnx->query($SQL2);
+    
+    while($info=$rs2->fetch_object()){
+        
+        if($info->id_interro!=='0'){
+            $interro = $info->sujet;
+        } else {
+            $interro = "";
+        }
+        
+        echo '  <tr class="success">
+                    <td>
+                        '.$info->date.'
+                    </td>
+                    <td>
+                        '.$info->matiere.'
+                    </td>
+                    <td>
+                        '.$info->promoInterro.'
+                    </td>
+                    <td>
+                        '.truncate($info->sujet,80).'
+                    </td>
+                    <td>
+                        <input type="checkbox" class="checkbox" checked onclick="corrigerInterro('.$info->interro_id.')" />
+                    </td>';
+            if($_SESSION["type"]=='1'){
+                echo '<td>'.$info->prenomProf.' '.$info->nomProf.'</td>';
+            }
+          echo '</tr>';
     }
     
     echo '</table>';

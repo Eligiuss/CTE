@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/style.css"/>
         <script src="js/jquery.js"></script>
         <script src="js/script.js"></script>

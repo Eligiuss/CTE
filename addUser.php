@@ -36,8 +36,8 @@
             <input type="text" id="passwordUser" class="form-control"/>
         </div>
         
-        <button type="button" onclick="saveUser()" class="btn btn-default">Sauvegarder</button>
-        <button type="button" onclick="window.location='user.php'" class="btn btn-default">Annuler</button>
+        <button type="button" onclick="saveUser()" class="btn btn-success btn-lg">Sauvegarder</button>
+        <button type="button" onclick="window.location='user.php'" class="btn btn-default btn-lg">Annuler</button>
     </div>
 </div>
 

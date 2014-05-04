@@ -95,8 +95,24 @@ html {
     cursor: pointer;
 }
 
+#tableInterro1{
+    margin-left:11%;
+    width:44.5%;
+    float:left;
+}
+
+#tableInterro2{
+    margin-left:55.5%;
+    width:44.5%;
+    border-left: 3px solid #aaaaaa;
+}
+
 .table tbody tr:hover th {
     background-color: transparent;
+}
+
+.checkbox{
+    
 }
 
 /*

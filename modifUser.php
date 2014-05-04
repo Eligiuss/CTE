@@ -57,8 +57,9 @@
             <input type="text" value="<?php echo $password; ?>" id="passwordUser" class="form-control"/>
         </div>
         
-        <button type="button" onclick="saveUser(<?php echo $_GET["id"]; ?>)" class="btn btn-default">Sauvegarder</button>
-        <button type="button" onclick="window.location='user.php'" class="btn btn-default">Annuler</button>
+        <button type="button" onclick="saveUser(<?php echo $_GET["id"]; ?>)" class="btn btn-success btn-lg">Sauvegarder</button>
+        <button type="button" onclick="window.location='user.php'" class="btn btn-default btn-lg">Annuler</button>
+        <button type="button" onclick="delUser(<?php echo $_GET["id"]; ?>)" class="btn btn-danger btn-lg" style="float:right;">Supprimer</button>
     </div>
 </div>
 
