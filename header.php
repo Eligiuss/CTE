@@ -27,14 +27,6 @@
                 <a class="navbar-brand" href="#">CTE</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a><?php
-                    if($titre !== 'Connexion') {
-                    session_start();
-                    echo 'Connecter en temps que :' . $_SESSION['nom_user'] . ' ' . $_SESSION['prenom_user'];}
-                ?></a>
-                </li>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <?php
                 if($titre !== 'Connexion') {
