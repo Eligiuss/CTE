@@ -35,11 +35,38 @@ function saveCours(id){
     var promo = promoOption.options[promoOption.selectedIndex].text; //Le texte de l'option choisie
     var contenu = document.getElementById('contenu').value;
     var travail = document.getElementById('travail').value;
+    var dateButoir = document.getElementById('dateButoir').value;
+    var sujet = document.getElementById('sujet').value;
+    var id_interro = document.getElementById('interro').value;
     
     if(contenu==''){
         alert('Veuillez entrer le contenu du cours.');
         document.getElementById('contenu').focus();
         return;
+    }
+    
+    if(dateButoir!=='' && travail==''){ //Si : date butoir précisée mais pas le travail
+        alert('Veuillez préciser le travail à faire.');
+        document.getElementById('travail').focus();
+        return;
+    }
+    
+    if(dateButoir=='' && travail!==''){ //Si : travail précisé mais pas de date butoir
+        alert('Veuillez préciser la date butoir du travail à faire.');
+        document.getElementById('dateButoir').focus();
+        return;
+    }
+    
+    if(document.getElementById('interro').checked && sujet=='') { //Si interro cochée mais pas de sujet
+        alert('Veuillez entrer le sujet de l\'interrogation.');
+        document.getElementById('sujet').focus();
+        return;
+    }
+    
+    if(document.getElementById('interro').checked){
+        var modifActionInterro = 'modif'; //Si on modifie le cours et que la case interro est cochée : on modifiera l'interro
+    } else {
+        var modifActionInterro = 'delete'; //Si on modifie le cours et que la case interro est décochée : on supprimera l'interro
     }
     
     if(id==undefined){
@@ -53,7 +80,11 @@ function saveCours(id){
                 promo: promo,
                 contenu: contenu,
                 travail: travail,
-                id_cours: id
+                dateButoir: dateButoir,
+                sujet: sujet,
+                id_cours: id,
+                id_interro: id_interro,
+                modifActionInterro: modifActionInterro
             },
             type: 'POST',
             success: function(response){
@@ -110,4 +141,12 @@ function saveUser(id){
                 }
             }
     });
+}
+
+function readonlySujet(){
+    if(document.getElementById('interro').checked) {
+            document.getElementById('sujet').readOnly = false;
+        } else {
+            document.getElementById('sujet').readOnly = true;
+        }
 }

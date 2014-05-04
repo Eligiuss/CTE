@@ -11,8 +11,10 @@
         $date = $info->date;
         $contenu = $info->contenu;
         $travail = $info->travail;
+        $dateButoir = $info->date_butoir;
         $promo = $info->promo;
         $id_matiere = $info->id_matiere;
+        $id_interro = $info->id_interro;
     }
     
     $SQL2 = "SELECT nom FROM matiere
@@ -29,6 +31,18 @@
     
     while($info=$rs3->fetch_object()) {
         $id_promo = $info->ID;
+    }
+    
+    $SQL4 = "SELECT libelle FROM interro
+             WHERE ID = '".$id_interro."' ";
+    $rs4=$cnx->query($SQL4);
+    
+    if($rs4->num_rows=='0'){
+        $sujet="";
+    }
+    
+    while($info=$rs4->fetch_object()) {
+        $sujet = $info->libelle;
     }
 ?>
 
@@ -87,16 +101,18 @@
             <textarea id="contenu" class="form-control"><?php echo $contenu; ?></textarea>
         </div>
      
-        <div class="form-group">
-           <label for="travail">Travail donné</label>
-           <textarea id="travail" class="form-control"><?php echo $travail; ?></textarea>
-        </div>
+        <hr/>
+            <div class="form-group">
+               <label for="travail">Travail donné</label>
+               <textarea id="travail" class="form-control" placeholder="Travail à faire..."><?php echo $travail; ?></textarea>
+            </div>
+            <input type="text" id="dateButoir" value="<?php echo $dateButoir; ?>" placeholder="Date butoir... (jj/mm/aaaa)" class="form-control" />
+        <hr/>
+        
         
         <div class="form-group">
-            <label>Interrogation</label>
-            <div class="form-control">
-                <b class="ie1"> Interrogation en cours : <input type="checkbox"  /></b><b class="ie2">Interrogation corrigée en cours : <select></select></b>
-            </div>
+            <label>Interrogation <input type="checkbox" value="<?php echo $id_interro; ?>" onclick="readonlySujet()" id="interro" <?php if($sujet!=='') echo 'checked'; ?>/></label>
+            <input type="text" class="form-control" value="<?php echo $sujet; ?>" <?php if($sujet=='') echo 'readonly'; ?> id="sujet" placeholder="Sujet..." />
         </div>
         
         <button type="button" onclick="saveCours(<?php echo $_GET["id"] ?>)" class="btn btn-default">Sauvegarder</button>
