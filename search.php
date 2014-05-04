@@ -6,8 +6,66 @@
 
     <table class="table table-hover tableListe">
         <tr>
-            <th colspan="7">Filtre</th>
+            <th colspan="6">Filtre :</th>
         </tr>
+         <tr>
+        <th>Date(calendrier a faire)</th>
+        <th>
+            <select>
+                <option value="0">Promotion</option>
+                <?php
+                include 'Connection_BDD.php';
+                
+                    $SQL = "SELECT ID,nom FROM promo";
+                    $rs = $cnx->query($SQL);
+
+                    while ($info = $rs->fetch_object()) {
+                        echo '<option value="' . $info->ID . '">' . $info->nom . '</option>';
+                    }
+                ?>
+            </select>
+        </th>
+        <th>
+            <select>
+                <!--a géré le fait que ce filtre ne s'affiche que si le user et un admin(les prof ne peuvent pas voir les cours des autres professeurs) -->
+                <option value="0">Professeur</option>
+                <?php
+                include 'Connection_BDD.php';
+                
+                    $SQL = "SELECT ID,nom,prenom FROM utilisateur";
+                    $rs = $cnx->query($SQL);
+
+                    while ($info = $rs->fetch_object()) {
+                        echo '<option value="' . $info->ID . '">' . $info->nom . ' ' . $info->prenom . '</option>';
+                    }
+                ?>
+            </select>
+        </th>
+        <th colspan="3">
+            <select>
+                <option value="0">Matière</option>
+                <?php
+                include 'Connection_BDD.php';
+                
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs = $cnx->query($SQL);
+
+                    while ($info = $rs->fetch_object()) {
+                        echo '<option value="' . $info->ID . '">' . $info->nom . '</option>';
+                    }
+                ?>
+            </select>
+        </th>
+
+        <th>
+            <select>
+                <option>Interro</option>
+                <option>Oui</option>
+                <option>Nom</option>
+            </select>
+        </th>
+
+    </tr>
         <tr>
             <th>Date</th>
             <th>Promotion</th>
