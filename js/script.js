@@ -102,44 +102,65 @@ function saveCours(id){
     });
 }
 
+$(document).ready(function(){ 
+    var typeVal = $('input[name=type]:checked').val();
+    if(typeVal=='admin'){
+        $("#matieres").hide();
+    }
+    $("input[name=type]").change(function() {
+        var test = $(this).val();
+        if(test=='prof'){
+            $("#matieres").show(300);
+        } else {
+            $("#matieres").hide(300);
+        }
+    }); 
+});
+
 function saveUser(id){
     var typeVal = $('input[name=type]:checked').val();
     if(typeVal=='prof'){
         var type = '0';
+        var matiereOption = document.getElementById('matiere'); //Le <select> matiere 1
+        var matiereOption2 = document.getElementById('matiere2'); //Le <select> matiere 2
+        var matiereOption3 = document.getElementById('matiere3'); //Le <select> matiere 3
+
+        var matiereId = matiereOption.options[matiereOption.selectedIndex].value; //La valeur de l'option choisie du select 1
+        var matiere2Id = matiereOption2.options[matiereOption2.selectedIndex].value; //La valeur de l'option choisie du select 2
+        var matiere3Id = matiereOption3.options[matiereOption3.selectedIndex].value; //La valeur de l'option choisie du select 3
+
+        var matiere = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 1
+        
+        if(matiereId=='0'){
+            alert('Veuillez choisir la matière principale.');
+            return;
+        }
+        
+        if(matiere2Id!='0') {
+            var matiere2 = matiereOption2.options[matiereOption2.selectedIndex].text; //Le texte de l'option choisie du select 2
+        } else {
+            var matiere2 = '';
+        }
+
+        if(matiere3Id!='0') {
+            var matiere3 = matiereOption3.options[matiereOption3.selectedIndex].text; //Le texte de l'option choisie du select 3
+        } else {
+            var matiere3 = '';
+        }
     } else if(typeVal=='admin'){
         var type = '1';
+        var matiere = '';
+        var matiere2 = '';
+        var matiere3 = '';
+        var matiereId = '';
+        var matiere2Id = '';
+        var matiere3Id = '';
     }
+    
     var nom = document.getElementById('nomUser').value;
     var prenom = document.getElementById('prenomUser').value;
     var login = document.getElementById('loginUser').value;
     var password = document.getElementById('passwordUser').value;
-    
-    var matiereOption = document.getElementById('matiere'); //Le <select> matiere 1
-    var matiereOption2 = document.getElementById('matiere2'); //Le <select> matiere 2
-    var matiereOption3 = document.getElementById('matiere3'); //Le <select> matiere 3
-    
-    var matiereId = matiereOption.options[matiereOption.selectedIndex].val; //La valeur de l'option choisie du select 1
-    var matiere2Id = matiereOption2.options[matiereOption2.selectedIndex].val; //La valeur de l'option choisie du select 2
-    var matiere3Id = matiereOption3.options[matiereOption3.selectedIndex].val; //La valeur de 'option choisie du select 3
-    
-    var matiere = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 1
-    
-    if(matiere2Id!='0') {
-        var matiere2 = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 2
-    } else {
-        var matiere2 = '';
-    }
-    
-    if(matiere3Id!='0') {
-        var matiere3 = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 3
-    } else {
-        var matiere3 = '';
-    }
-    
-    if(matiereId=='0'){
-        alert('Veuillez choisir la matière principale.');
-        return;
-    }
     
     if(id==undefined){
         id='';
@@ -198,13 +219,14 @@ function corrigerInterro(id){
     });
 }
 
-function delCours(id){
+function delCours(id,id_interro){
     var areYouSure = confirm('Voulez-vous vraiment supprimer ce cours ?');
     
     if (areYouSure == true) {
         $.ajax({url: 'delCours.php',
             data:{
-                id:id
+                id:id,
+                id_interro: id_interro
             },
             type: 'POST',
             success: function(response){
@@ -247,21 +269,5 @@ function filtre()
     var promotionId = promotion.options[promotion.selectedIndex].value; 
     var professeurId = professeur.options[professeur.selectedIndex].value; 
     
-    
     window.location.replace('search.php?matiereId='+matiereId+'&promotionId='+promotionId+'&professeurId='+professeurId+'');
-//    alert('id de matiere : '+matiereId+' id de promotion : '+promotionId+' id de professeur : '+professeurId);
-//     $.ajax({url: 'search.php',
-//            data:{
-//                matiereId:matiereId,
-//                promotionId:promotionId,
-//                professeurId:professeurId
-//            },
-//            type: 'GET',
-//            dataType:'text',
-//            success: function(){
-//                {
-//                    alert('ok');
-//                }
-//            }
-//        });
 }

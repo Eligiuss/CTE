@@ -2,6 +2,10 @@
     $titre = 'Accueil';
     include('header.php');
     include('connection_BDD.php');
+    
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
 ?>
 
 <div class="nouveau">
@@ -35,50 +39,55 @@
             <label for="contenu">Mot de passe</label>
             <input type="text" id="passwordUser" class="form-control"/>
         </div>
-        
-        <div class="form-group">
-            <label for="matiere">Matière(s)</label>
-            <select id="matiere" class="form-control">
-                <option value="0">Choisissez une matière...</option>
-                <?php
-                    include 'Connection_BDD.php';
-                    
-                    $SQL = "SELECT ID,nom FROM matiere";
-                    $rs=$cnx->query($SQL);
+       
+        <div id="matieres">
+            <div class="form-group">
+                <label for="matiere">Matière(s)</label>
+                <select id="matiere" class="form-control">
+                    <option value="0">Choisissez une matière...</option>
+                    <?php
+                        include 'Connection_BDD.php';
 
-                    while($info=$rs->fetch_object()){
-                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
-                    }
-                ?>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <select id="matiere2" class="form-control">
-                <option value="0">Matière 2...</option>
-                <?php
-                    $SQL = "SELECT ID,nom FROM matiere";
-                    $rs=$cnx->query($SQL);
+                        $SQL = "SELECT ID,nom FROM matiere
+                                ORDER BY nom ASC";
+                        $rs=$cnx->query($SQL);
 
-                    while($info=$rs->fetch_object()){
-                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
-                    }
-                ?>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <select id="matiere3" class="form-control">
-                <option value="0">Matière 3...</option>
-                <?php
-                    $SQL = "SELECT ID,nom FROM matiere";
-                    $rs=$cnx->query($SQL);
+                        while($info=$rs->fetch_object()){
+                            echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
 
-                    while($info=$rs->fetch_object()){
-                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
-                    }
-                ?>
-            </select>
+            <div class="form-group">
+                <select id="matiere2" class="form-control">
+                    <option value="0">Matière 2...</option>
+                    <?php
+                        $SQL = "SELECT ID,nom FROM matiere
+                                ORDER BY nom ASC";
+                        $rs=$cnx->query($SQL);
+
+                        while($info=$rs->fetch_object()){
+                            echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select id="matiere3" class="form-control">
+                    <option value="0">Matière 3...</option>
+                    <?php
+                        $SQL = "SELECT ID,nom FROM matiere
+                                ORDER BY nom ASC";
+                        $rs=$cnx->query($SQL);
+
+                        while($info=$rs->fetch_object()){
+                            echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                        }
+                    ?>
+                </select>
+            </div>
         </div>
         
         

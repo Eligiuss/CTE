@@ -3,6 +3,10 @@
     include('header.php');
     include('connection_BDD.php');
     
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
+    
     $SQL = "SELECT * FROM cours
             WHERE ID = '".$_GET["id"]."' ";
     $rs=$cnx->query($SQL);
@@ -15,16 +19,11 @@
         $promo = $info->promo;
         $id_matiere = $info->id_matiere;
         $id_interro = $info->id_interro;
+        $id_prof = $info->id_prof;
+        $creation_date = $info->creation_date;
+        $last_update_date = $info->last_update_date;
     }
-    
-    $SQL2 = "SELECT nom FROM matiere
-             WHERE ID = '".$id_matiere."' ";
-    $rs2=$cnx->query($SQL2);
-    
-    while($info=$rs2->fetch_object()) {
-        $matiere = $info->nom;
-    }
-    
+  
     $SQL3 = "SELECT ID FROM promo
              WHERE nom = '".$promo."' ";
     $rs3=$cnx->query($SQL3);
@@ -52,6 +51,18 @@
     <div class="milieuPage">
         <h2 class="text-center">Modifier un cours</h2>
         </br>
+        <div class="center-block">
+            <div class="row">
+                <div class="col-xs-4" style="float:left; width:50%;">
+                  <input type="text" readonly class="form-control" value="Date de création : <?php echo $creation_date; ?> ">
+                </div>
+                <div class="col-xs-4" style="float:right; width:50%;">
+                  <input type="text" readonly class="form-control" value="Date de dernière mise à jour : <?php echo $last_update_date; ?> ">
+                </div>
+            </div>
+        </div>
+
+        <br/>
         
         <div class="form-group">
             <label for="date">Date</label>
@@ -66,11 +77,17 @@
                 <?php
                     include 'Connection_BDD.php';
                     
-                    $SQL4 = "SELECT ID,nom FROM matiere
-                             WHERE ID != '".$id_matiere."' ";
+                    if($_SESSION["type"]=='0') {
+                        $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
+                                INNER JOIN enseigne e ON m.ID = e.matiereID
+                                WHERE e.userID='".$id_prof."'
+                                ORDER BY nom ASC";
+                    } else if($_SESSION["type"]=='1') {
+                        $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
+                                INNER JOIN enseigne e ON m.ID = e.matiereID
+                                ORDER BY nom ASC";
+                    }
                     $rs4=$cnx->query($SQL4);
-                    
-                    echo '  <option value="'.$id_matiere.'">'.$matiere.'</option>';
 
                     while($info=$rs4->fetch_object()){
                         echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
@@ -117,7 +134,7 @@
         
         <button type="button" onclick="saveCours(<?php echo $_GET["id"] ?>)" class="btn btn-success btn-lg">Sauvegarder</button>
         <button type="button" onclick="window.location='search.php'" class="btn btn-default btn-lg">Annuler</button>
-        <button type="button" onclick="delCours(<?php echo $_GET["id"] ?>)" class="btn btn-danger btn-lg" style="float:right">Supprimer</button>
+        <button type="button" onclick="delCours(<?php echo $_GET["id"] ?>,<?php echo $id_interro; ?>)" class="btn btn-danger btn-lg" style="float:right">Supprimer</button>
     </div>
 </div>
 

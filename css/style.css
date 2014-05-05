@@ -13,6 +13,10 @@ body
     padding-top: 50px;
 }
 
+h5{
+    font-size:16px;
+}
+
 .navbar{
     width:100%;
 }
@@ -93,6 +97,11 @@ html {
 
 .tableListe td:hover{
     cursor: pointer;
+}
+
+.tableHisto{
+    margin-left:11%;
+    width:89%;
 }
 
 #tableInterro1{

@@ -2,6 +2,10 @@
     $titre = 'Gestion des utilisateurs';
     include('header.php');
     include('Connection_BDD.php');
+    
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
 ?>
 
     <table class="table table-hover tableListe">

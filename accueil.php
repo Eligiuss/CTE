@@ -1,7 +1,11 @@
 <?php
-    $titre = 'Accueil';
+    $titre = 'Nouveau cours';
     include('header.php');
     include('connection_BDD.php');
+    
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
 ?>
 
 <div class="nouveau">
@@ -20,10 +24,18 @@
                 <?php
                     include 'Connection_BDD.php';
                     
-                    $SQL = "SELECT ID,nom FROM matiere";
-                    $rs=$cnx->query($SQL);
+                    if($_SESSION["type"]=='0') {
+                        $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
+                                INNER JOIN enseigne e ON m.ID = e.matiereID
+                                WHERE e.userID='".$_SESSION["ID"]."'
+                                ORDER BY nom ASC";
+                    } else if($_SESSION["type"]=='1') {
+                        $SQL4 = "SELECT ID,nom FROM matiere
+                                 ORDER BY nom ASC";
+                    }
+                    $rs4=$cnx->query($SQL4);
 
-                    while($info=$rs->fetch_object()){
+                    while($info=$rs4->fetch_object()){
                         echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
                     }
                 ?>

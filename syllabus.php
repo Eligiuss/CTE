@@ -2,6 +2,10 @@
     $titre = 'Syllabus';
     include('header.php');
     include('connection_BDD.php');
+    
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
 ?>
 
 <div class="nouveau">

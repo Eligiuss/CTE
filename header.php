@@ -1,8 +1,5 @@
 <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +42,7 @@
     <div class="bande-gauche">
         <div class="menu-gauche" >
             <ul class="nav nav-pills nav-stacked">
-                <h4 class="titreSection">COURS</h4>
+                <h5 class="titreSection">COURS</h5>
                 <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/accueil.php") echo "class='active'"; ?>><a href="accueil.php">Nouveau</a></li> <!--Si la page actuelle est 'accueil.php', on ajoute la classe 'active' à l'élément-->
                 <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/search.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifCours.php")) echo "class='active'"; ?>><a href="search.php">Rechercher</a></li>
                 <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/interro.php") echo "class='active'"; ?>><a href="interro.php">Interrogations</a></li>
@@ -55,7 +52,7 @@
                 <?php
                     if($_SESSION['type']=='1'){ //SECTION VISIBLE UNIQUEMENT PAR LES ADMINS
                 ?>
-                        <h4 class="titreSection">ADMINISTRATION</h4>
+                        <h5 class="titreSection">ADMINISTRATION</h5>
                         <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/user.php") || ($_SERVER['PHP_SELF'] == "/CTE/addUser.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifUser.php")) echo "class='active'"; ?>><a href="user.php">Gestion des utilisateurs</a></li>
                         <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/historique.php") echo "class='active'"; ?>><a href="historique.php">Historique</a></li>
                         <br/>

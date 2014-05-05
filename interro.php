@@ -3,6 +3,10 @@
     include('header.php');
     include('connection_BDD.php');
     
+    if(!isset($_SESSION["ID"])){
+        header('Location: index.php');
+    }
+    
     function truncate($value,$length){
         if(strlen($value)>$length){
         $value=substr($value,0,$length);
@@ -39,7 +43,7 @@
                 INNER JOIN interro i ON c.id_interro = i.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
                 INNER JOIN utilisateur u ON C.id_prof = u.ID
-                AND i.etat = '0'
+                WHERE i.etat = '0'
                 ORDER BY date DESC";
     } else {
         $SQL = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id FROM cours c
@@ -112,8 +116,8 @@
         $SQL2 = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id, u.nom nomProf, U.prenom prenomProf FROM cours c
                 INNER JOIN interro i ON c.id_interro = i.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
-                INNER JOIN utilisateur u ON C.id_prof = u.ID
-                AND i.etat = '1'
+                LEFT JOIN utilisateur u ON C.id_prof = u.ID
+                WHERE i.etat = '1'
                 ORDER BY date DESC";
     } else {
         $SQL2 = "SELECT c.*, m.nom matiere, i.libelle sujet, i.promo promoInterro, i.ID interro_id FROM cours c
