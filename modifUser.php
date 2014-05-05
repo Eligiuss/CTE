@@ -57,6 +57,51 @@
             <input type="text" value="<?php echo $password; ?>" id="passwordUser" class="form-control"/>
         </div>
         
+        <div class="form-group">
+            <label for="matiere">Matière(s)</label>
+            <select id="matiere" class="form-control">
+                <option value="0">Choisissez une matière...</option>
+                <?php
+                    include 'Connection_BDD.php';
+                    
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <select id="matiere" class="form-control">
+                <option value="0">Matière 2...</option>
+                <?php
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <select id="matiere" class="form-control">
+                <option value="0">Matière 3...</option>
+                <?php
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
         <button type="button" onclick="saveUser(<?php echo $_GET["id"]; ?>)" class="btn btn-success btn-lg">Sauvegarder</button>
         <button type="button" onclick="window.location='user.php'" class="btn btn-default btn-lg">Annuler</button>
         <button type="button" onclick="delUser(<?php echo $_GET["id"]; ?>)" class="btn btn-danger btn-lg" style="float:right;">Supprimer</button>

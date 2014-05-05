@@ -114,6 +114,33 @@ function saveUser(id){
     var login = document.getElementById('loginUser').value;
     var password = document.getElementById('passwordUser').value;
     
+    var matiereOption = document.getElementById('matiere'); //Le <select> matiere 1
+    var matiereOption2 = document.getElementById('matiere2'); //Le <select> matiere 2
+    var matiereOption3 = document.getElementById('matiere3'); //Le <select> matiere 3
+    
+    var matiereId = matiereOption.options[matiereOption.selectedIndex].val; //La valeur de l'option choisie du select 1
+    var matiere2Id = matiereOption2.options[matiereOption2.selectedIndex].val; //La valeur de l'option choisie du select 2
+    var matiere3Id = matiereOption3.options[matiereOption3.selectedIndex].val; //La valeur de 'option choisie du select 3
+    
+    var matiere = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 1
+    
+    if(matiere2Id!='0') {
+        var matiere2 = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 2
+    } else {
+        var matiere2 = '';
+    }
+    
+    if(matiere3Id!='0') {
+        var matiere3 = matiereOption.options[matiereOption.selectedIndex].text; //Le texte de l'option choisie du select 3
+    } else {
+        var matiere3 = '';
+    }
+    
+    if(matiereId=='0'){
+        alert('Veuillez choisir la matière principale.');
+        return;
+    }
+    
     if(id==undefined){
         id='';
     }
@@ -125,7 +152,13 @@ function saveUser(id){
                 prenom: prenom,
                 login: login,
                 password: password,
-                id: id
+                id: id,
+                matiere: matiere,
+                matiere2: matiere2,
+                matiere3: matiere3,
+                matiereId: matiereId,
+                matiere2Id: matiere2Id,
+                matiere3Id: matiere3Id
             },
             type: 'POST',
             success: function(response){

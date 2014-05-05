@@ -36,6 +36,52 @@
             <input type="text" id="passwordUser" class="form-control"/>
         </div>
         
+        <div class="form-group">
+            <label for="matiere">Matière(s)</label>
+            <select id="matiere" class="form-control">
+                <option value="0">Choisissez une matière...</option>
+                <?php
+                    include 'Connection_BDD.php';
+                    
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <select id="matiere2" class="form-control">
+                <option value="0">Matière 2...</option>
+                <?php
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <select id="matiere3" class="form-control">
+                <option value="0">Matière 3...</option>
+                <?php
+                    $SQL = "SELECT ID,nom FROM matiere";
+                    $rs=$cnx->query($SQL);
+
+                    while($info=$rs->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                ?>
+            </select>
+        </div>
+        
+        
         <button type="button" onclick="saveUser()" class="btn btn-success btn-lg">Sauvegarder</button>
         <button type="button" onclick="window.location='user.php'" class="btn btn-default btn-lg">Annuler</button>
     </div>
