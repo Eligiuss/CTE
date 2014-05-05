@@ -237,3 +237,31 @@ function delUser(id){
         return;
     }
 }
+
+function filtre()
+{
+    var matiere = document.getElementById('Matiere');
+    var promotion = document.getElementById('promotion');
+    var professeur = document.getElementById('professeur');
+    var matiereId = matiere.options[matiere.selectedIndex].value; 
+    var promotionId = promotion.options[promotion.selectedIndex].value; 
+    var professeurId = professeur.options[professeur.selectedIndex].value; 
+    
+    
+    window.location.replace('search.php?matiereId='+matiereId+'&promotionId='+promotionId+'&professeurId='+professeurId+'');
+//    alert('id de matiere : '+matiereId+' id de promotion : '+promotionId+' id de professeur : '+professeurId);
+//     $.ajax({url: 'search.php',
+//            data:{
+//                matiereId:matiereId,
+//                promotionId:promotionId,
+//                professeurId:professeurId
+//            },
+//            type: 'GET',
+//            dataType:'text',
+//            success: function(){
+//                {
+//                    alert('ok');
+//                }
+//            }
+//        });
+}
