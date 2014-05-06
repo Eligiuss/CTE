@@ -28,7 +28,12 @@ function login(){
 }
 
 function saveCours(id){
-    var date = document.getElementById('date').value;
+    var dateFr = document.getElementById('date').value;
+    var dateSplit = dateFr.split("/");
+    var jDate = dateSplit[0];
+    var mDate = dateSplit[1];
+    var YDate = dateSplit[2];
+    var date = YDate+'-'+mDate+'-'+jDate;
     var matiere = document.getElementById('matiere'); //Le <select> matiere
     var id_matiere = matiere.options[matiere.selectedIndex].value; //La valeur de l'option choisie
     var promoOption = document.getElementById('promo'); //Le <select> promo

@@ -29,7 +29,7 @@
         
         if($interroChecked=='1'){
             $historiqueInterro = " INSERT INTO historique (ID,action,date)
-                                   VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'interrogation : ".$sujet."', '".date('d/m/Y, H:i')."'); ";
+                                   VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'interrogation : ".$sujet."', NOW()); ";
             $rsHistoInt=$cnx->query($historiqueInterro);
             
             $SQL = "INSERT INTO interro (libelle, etat, date, promo)
@@ -40,10 +40,10 @@
         $SQL2 = "INSERT INTO cours (id_prof,id_matiere,id_interro,promo,travail,date,date_butoir,contenu,creation_date,last_update_date)
                  VALUES ('".$id_prof."', '".$id_matiere."', '".mysqli_insert_id($cnx)."',
                         '".$promo."', '".$travail."', '".$date."', '".$dateButoir."', '".$contenu."',
-                        '".date('d/m/Y, H:i')."', '".date('d/m/Y, H:i')."' ); ";
+                        NOW(), NOW() ); ";
         
         $historique = " INSERT INTO historique (ID,action,date)
-                        VALUES ('".$_SESSION["ID"]."', '(".$matiere.") Nouveau cours : ".$contenu."', '".date('d/m/Y, H:i')."') ";
+                        VALUES ('".$_SESSION["ID"]."', '(".$matiere.") Nouveau cours : ".$contenu."', NOW()) ";
         
     } else { //Si on a une id cours, on modifie le cours existant
         
@@ -53,7 +53,7 @@
                         VALUES ('".$sujet."', '0', '".$date."', '".$promo."') ";
                 
                 $historiqueInterro = " INSERT INTO historique (ID,action,date)
-                                       VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'interrogation : ".$sujet."', '".date('d/m/Y, H:i')."'); ";
+                                       VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'interrogation : ".$sujet."', NOW()); ";
         
                 $rsHistoInt=$cnx->query($historiqueInterro);
             } else { //Sinon, on modifie l'interro existante
@@ -62,7 +62,7 @@
                         WHERE ID = '".$id_interro."' ";
                 
                 $historiqueInterro = " INSERT INTO historique (ID,action,date)
-                                       VALUES ('".$_SESSION["ID"]."', 'Modification de l\'interrogation : ".$sujet."', '".date('d/m/Y, H:i')."'); ";
+                                       VALUES ('".$_SESSION["ID"]."', 'Modification de l\'interrogation : ".$sujet."', NOW()); ";
         
                 $rsHistoInt=$cnx->query($historiqueInterro);
             }
@@ -71,7 +71,7 @@
                     WHERE ID = '".$id_interro."' ";
             
             $historiqueInterro = " INSERT INTO historique (ID,action,date)
-                                   VALUES ('".$_SESSION["ID"]."', 'Suppression de l\'interrogation : ".$sujet."', '".date('d/m/Y, H:i')."'); ";
+                                   VALUES ('".$_SESSION["ID"]."', 'Suppression de l\'interrogation : ".$sujet."', NOW()); ";
         
             $rsHistoInt=$cnx->query($historiqueInterro);
         }
@@ -82,24 +82,24 @@
                      SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
                          promo='".$promo."', id_interro='".mysqli_insert_id($cnx)."',
                          travail='".$travail."', date_butoir='".$dateButoir."',
-                         date='".$date."', contenu='".$contenu."', last_update_date='".date('d/m/Y, H:i')."'
+                         date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";
         } else if($id_interro!='0' && $interroChecked=='1') {
             $SQL2 = "UPDATE cours
                      SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
                          promo='".$promo."', travail='".$travail."', date_butoir='".$dateButoir."',
-                         date='".$date."', contenu='".$contenu."', last_update_date='".date('d/m/Y, H:i')."'
+                         date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";
         } else if($id_interro!='0' && $interroChecked=='0') {
             $SQL2 = "UPDATE cours
                      SET id_prof='".$id_prof."', id_matiere='".$id_matiere."', promo='".$promo."',
                          travail='".$travail."', id_interro='0', date_butoir='".$dateButoir."',
-                         date='".$date."', contenu='".$contenu."', last_update_date='".date('d/m/Y, H:i')."'
+                         date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";
         }
         
         $historique = " INSERT INTO historique (ID,action,date)
-                        VALUES ('".$_SESSION["ID"]."', '(".$matiere.") Modification d\'un cours : ".$contenu."', '".date('d/m/Y H:i')."') ";
+                        VALUES ('".$_SESSION["ID"]."', '(".$matiere.") Modification d\'un cours : ".$contenu."', NOW()) ";
     }
     
     $rs=$cnx->query($historique);

@@ -7,12 +7,15 @@
         header('Location: index.php');
     }
     
-    $SQL = "SELECT * FROM cours
+    $SQL = "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date_fr,contenu,travail,date_butoir,promo,id_matiere,id_interro,id_prof,creation_date,
+            DATE_FORMAT(creation_date, '%d/%m/%Y \à %H:%i:%S') AS creation_date_fr,
+            DATE_FORMAT(last_update_date, '%d/%m/%Y \à %H:%i:%S') AS last_update_date_fr
+            FROM cours
             WHERE ID = '".$_GET["id"]."' ";
     $rs=$cnx->query($SQL);
     
     while($info=$rs->fetch_object()) {
-        $date = $info->date;
+        $date = $info->date_fr;
         $contenu = $info->contenu;
         $travail = $info->travail;
         $dateButoir = $info->date_butoir;
@@ -20,8 +23,8 @@
         $id_matiere = $info->id_matiere;
         $id_interro = $info->id_interro;
         $id_prof = $info->id_prof;
-        $creation_date = $info->creation_date;
-        $last_update_date = $info->last_update_date;
+        $creation_date = $info->creation_date_fr;
+        $last_update_date = $info->last_update_date_fr;
     }
   
     $SQL3 = "SELECT ID FROM promo
@@ -42,6 +45,15 @@
     
     while($info=$rs4->fetch_object()) {
         $sujet = $info->libelle;
+    }
+    
+    $SQLuser = "SELECT nom,prenom,type FROM utilisateur
+                WHERE ID = '".$id_prof."' ";
+    $rsuser=$cnx->query($SQLuser);
+    while($info=$rsuser->fetch_object()){
+        $nomUser = $info->nom;
+        $prenomUser = $info->prenom;
+        $typeUser = $info->type;
     }
 ?>
 
@@ -75,20 +87,27 @@
             <label for="matiere">Matière</label>
             <select id="matiere" class="form-control">
                 <?php
-                    include 'Connection_BDD.php';
-                    
-                    if($_SESSION["type"]=='0') {
+                    $SQLmatiereDefault = "SELECT ID,nom FROM matiere
+                                          WHERE ID = '".$id_matiere."' ";
+                    $rsmatiereDefault = $cnx->query($SQLmatiereDefault);
+                
+                    if($typeUser=='0') {
                         $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
-                                INNER JOIN enseigne e ON m.ID = e.matiereID
-                                WHERE e.userID='".$id_prof."'
-                                ORDER BY nom ASC";
-                    } else if($_SESSION["type"]=='1') {
-                        $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
-                                INNER JOIN enseigne e ON m.ID = e.matiereID
-                                ORDER BY nom ASC";
+                                 LEFT JOIN enseigne e ON m.ID = e.matiereID
+                                 WHERE e.userID='".$id_prof."'
+                                 AND m.ID != '".$id_matiere."'
+                                 ORDER BY nom ASC";
+                    } else if($typeUser=='1') {
+                        $SQL4 = "SELECT ID,nom FROM matiere
+                                 WHERE ID != '".$id_matiere."'
+                                 ORDER BY nom ASC";
                     }
                     $rs4=$cnx->query($SQL4);
-
+                    
+                    while($info=$rsmatiereDefault->fetch_object()){
+                        echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    }
+                    
                     while($info=$rs4->fetch_object()){
                         echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
                     }

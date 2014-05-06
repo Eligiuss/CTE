@@ -21,7 +21,7 @@
     
     if($id==''){ //INSERTION
         $historique = " INSERT INTO historique (ID,action,date)
-                        VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'utilisateur ".$prenom." ".$nom."', '".date('d/m/Y H:i')."') ";
+                        VALUES ('".$_SESSION["ID"]."', 'Ajout de l\'utilisateur ".$prenom." ".$nom."', NOW()) ";
         
         $SQL = "INSERT INTO utilisateur (type,nom,prenom,login,password)
                 VALUES ('".$type."', '".$nom."', '".$prenom."', '".$login."', '".$password."')";
@@ -44,7 +44,7 @@
         
     } else { //MODIFICATION
         $historique = " INSERT INTO historique (ID,action,date)
-                        VALUES ('".$_SESSION["ID"]."', 'Modification de l\'utilisateur ".$prenom." ".$nom."', '".date('d/m/Y H:i')."') ";
+                        VALUES ('".$_SESSION["ID"]."', 'Modification de l\'utilisateur ".$prenom." ".$nom."', NOW()) ";
         
         $SQL = "UPDATE utilisateur
                 SET type='".$type."', nom='".$nom."', prenom='".$prenom."',

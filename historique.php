@@ -41,7 +41,8 @@
         $prenom = $info->prenom;
     }
     
-    $SQL2 = "SELECT * FROM historique"; 
+    $SQL2 = "SELECT ID,action,DATE_FORMAT(date, '%d/%m/%Y \à %H:%i:%S') AS DateTemps FROM historique
+            ORDER BY date DESC"; 
     $rs2=$cnx->query($SQL2);
     
     while($info=$rs2->fetch_object()){          
@@ -53,7 +54,7 @@
                         '.truncate($info->action,150).'
                     </td>
                     <td>
-                        '.$info->date.'
+                        '.$info->DateTemps.'
                     </td>
                 </tr>';
     }

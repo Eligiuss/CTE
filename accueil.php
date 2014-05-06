@@ -26,7 +26,7 @@
                     
                     if($_SESSION["type"]=='0') {
                         $SQL4 = "SELECT m.ID,m.nom,e.userID FROM matiere m
-                                INNER JOIN enseigne e ON m.ID = e.matiereID
+                                LEFT JOIN enseigne e ON m.ID = e.matiereID
                                 WHERE e.userID='".$_SESSION["ID"]."'
                                 ORDER BY nom ASC";
                     } else if($_SESSION["type"]=='1') {

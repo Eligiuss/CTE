@@ -130,7 +130,8 @@ if ($_GET) {
     }
     
     if ($_SESSION["type"] == '1') { //Si l'utilisateur connecté est un administrateur, on affiche tous les cours
-        $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
+        $SQL = "SELECT c.ID IDcours, c.promo, c.contenu, c.travail, c.id_interro, DATE_FORMAT(c.date, '%d/%m/%Y') AS date_fr,
+                       m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
                 INNER JOIN utilisateur u ON c.id_prof = u.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
                 LEFT JOIN interro i on c.id_interro = i.ID
@@ -139,7 +140,8 @@ if ($_GET) {
                     AND ".$profWhere."
                 ORDER BY date DESC";
     } else {
-        $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
+        $SQL = "SELECT c.ID IDcours, c.promo, c.contenu, c.travail, c.id_interro, DATE_FORMAT(c.date, '%d/%m/%Y') AS date_fr,
+                       m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
                 INNER JOIN utilisateur u ON c.id_prof = u.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
                 LEFT JOIN interro i on c.id_interro = i.ID
@@ -151,18 +153,20 @@ if ($_GET) {
     }
 } else {
     if ($_SESSION["type"] == '1') { //Si l'utilisateur connecté est un administrateur, on affiche tous les cours
-        $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
+        $SQL = "SELECT c.ID IDcours, c.promo, c.contenu, c.travail, c.id_interro, DATE_FORMAT(c.date, '%d/%m/%Y') AS date_fr,
+                       m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
                 INNER JOIN utilisateur u ON c.id_prof = u.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
                 LEFT JOIN interro i on c.id_interro = i.ID
-                ORDER BY date DESC";
+                ORDER BY c.date DESC";
     } else {
-        $SQL = "SELECT c.*, m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
+        $SQL = "SELECT c.ID IDcours, c.promo, c.contenu, c.travail, c.id_interro, DATE_FORMAT(c.date, '%d/%m/%Y') AS date_fr,
+                       m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
                 INNER JOIN utilisateur u ON c.id_prof = u.ID
                 INNER JOIN matiere m ON c.id_matiere = m.ID
                 LEFT JOIN interro i on c.id_interro = i.ID
                 WHERE id_prof = '" . $_SESSION["ID"] . "'
-                ORDER BY date DESC";
+                ORDER BY c.date DESC";
     }
 }
 
@@ -176,9 +180,9 @@ while ($info = $rs->fetch_object()) {
         $interro = "";
     }
 
-    echo '  <tr onclick="window.location=\'modifCours.php?id=' . $info->ID . '\'">
+    echo '  <tr onclick="window.location=\'modifCours.php?id=' . $info->IDcours . '\'">
                     <td>
-                        ' . $info->date . '
+                        ' . $info->date_fr . '
                     </td>
                     <td>
                         ' . $info->promo . '
