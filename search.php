@@ -36,10 +36,15 @@
                 </select>
             </th>
             <th>
+                <?php
+                if($_SESSION['type'] == 1)
+    {
+                ?>
                 <select class="filtre" onchange="filtre()" id="professeur">
                     <!--a géré le fait que ce filtre ne s'affiche que si le user et un admin(les prof ne peuvent pas voir les cours des autres professeurs) -->
                     <option value="">Professeur</option>
     <?php
+    
         include 'Connection_BDD.php';
 
         $SQL = "SELECT ID,nom,prenom FROM utilisateur";
@@ -56,8 +61,13 @@
                 echo '<option value="' . $info->ID . '">' . $info->nom . ' ' . $info->prenom . '</option>';
             }
         }
+        echo '</select >';
+    }
+ else {
+    echo 'Professeur';    
+    }
     ?>
-                </select >
+                
             </th>
             <th>
                 <select class="filtre" onchange="filtre()" id="Matiere">
