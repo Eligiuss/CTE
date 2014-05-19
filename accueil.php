@@ -7,7 +7,6 @@
         header('Location: index.php');
     }
 ?>
-
 <div class="nouveau">
     <div class="milieuPage">
         <h2 class="text-center">Nouveau cours</h2>
@@ -15,7 +14,7 @@
         
         <div class="form-group">
             <label for="date">Date</label>
-            <input class="form-control" id="date" placeholder="jj/mm/aaaa" value="<?php echo date('d/m/Y'); ?>">
+            <input type="text" class="form-control" id="date"  placeholder="jj/mm/aaaa" value="<?php echo date(); ?>">
         </div>
         
         <div class="form-group">

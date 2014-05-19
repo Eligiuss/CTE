@@ -304,3 +304,6 @@ function filtre()
     
     window.location.replace('search.php?matiereId='+matiereId+'&promotionId='+promotionId+'&professeurId='+professeurId+'');
 }
+$(function() {
+    $( "#date" ).datepicker();
+  });
