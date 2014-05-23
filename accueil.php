@@ -14,7 +14,7 @@
         
         <div class="form-group">
             <label for="date">Date</label>
-            <input type="text" class="form-control" id="date"  placeholder="jj/mm/aaaa" value="<?php echo date(); ?>">
+            <input type="text" class="form-control" id="date"  placeholder="jj/mm/aaaa" value="<?php echo date('d/m/Y'); ?>">
         </div>
         
         <div class="form-group">

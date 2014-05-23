@@ -71,6 +71,7 @@ function saveCours(id){
     var dateButoir = document.getElementById('dateButoir').value;
     var sujet = document.getElementById('sujet').value;
     var id_interro = document.getElementById('interro').value;
+    var id_prof = document.getElementById('prof').value;
     
     if(contenu==''){
         alert('Veuillez entrer le contenu du cours.');
@@ -117,6 +118,7 @@ function saveCours(id){
                 sujet: sujet,
                 id_cours: id,
                 id_interro: id_interro,
+                id_prof: id_prof,
                 interroChecked: interroChecked
             },
             type: 'POST',
@@ -304,6 +306,7 @@ function filtre()
     
     window.location.replace('search.php?matiereId='+matiereId+'&promotionId='+promotionId+'&professeurId='+professeurId+'');
 }
+
 $(function() {
-    $( "#date" ).datepicker();
+    $( "#date" ).datepicker( $.datepicker.regional[ "fr" ] );
   });

@@ -13,7 +13,7 @@
     $dateButoir = $cnx->real_escape_string($_POST["dateButoir"]);
     $sujet = $cnx->real_escape_string($_POST["sujet"]);
     $id_interro = $cnx->real_escape_string($_POST["id_interro"]);
-    $id_prof = $cnx->real_escape_string($_SESSION["ID"]);
+    $id_prof = $cnx->real_escape_string($_POST["id_prof"]);
     $id_matiere= $cnx->real_escape_string($_POST["id_matiere"]);
     $id_cours = $cnx->real_escape_string($_POST["id_cours"]);
     $interroChecked = $cnx->real_escape_string($_POST["interroChecked"]);

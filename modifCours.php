@@ -76,6 +76,8 @@
 
         <br/>
         
+        <input type="hidden" id="prof" value="<?php echo $id_prof; ?>" />
+        
         <div class="form-group">
             <label for="date">Date</label>
             <?php
