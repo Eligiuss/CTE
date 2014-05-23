@@ -51,7 +51,7 @@
                 <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/search.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifCours.php")) echo "class='active'"; ?>><a href="search.php">Rechercher</a></li>
                 <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/interro.php") echo "class='active'"; ?>><a href="interro.php">Interrogations</a></li>
                 <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/syllabus.php") echo "class='active'"; ?>><a href="syllabus.php">Syllabus</a></li>
-                <br/><br/><br/>
+                <br/><hr/><br/>
                 
                 <?php
                     if($_SESSION['type']=='1'){ //SECTION VISIBLE UNIQUEMENT PAR LES ADMINS
