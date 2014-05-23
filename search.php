@@ -146,7 +146,7 @@ if ($_GET) {
                 WHERE " . $promoWhere . "
                     AND " . $matiereWhere . "
                     AND " . $profWhere . "
-                ORDER BY date DESC";
+                ORDER BY c.date DESC";
     } else {
         $SQL = "SELECT c.ID IDcours, c.promo, c.contenu, c.travail, c.id_interro, DATE_FORMAT(c.date, '%d/%m/%Y') AS date_fr,
                        m.nom matiere, u.nom nomProf, u.prenom prenomProf, i.libelle sujet FROM cours c
@@ -157,7 +157,7 @@ if ($_GET) {
                     AND " . $promoWhere . "
                     AND " . $matiereWhere . "
                     AND " . $profWhere . "
-                ORDER BY date DESC";
+                ORDER BY c.date DESC";
     }
 } else {
     if ($_SESSION["type"] == '1') { //Si l'utilisateur connecté est un administrateur, on affiche tous les cours
