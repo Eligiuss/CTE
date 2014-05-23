@@ -98,6 +98,9 @@ while ($info = $rs->fetch_object()) {
             <th>
                 Interro
             </th>
+            <th>
+                Exporter en PDF
+            </th>
         </tr>
     </thead>
 
@@ -211,7 +214,7 @@ while ($info = $rs->fetch_object()) {
                         ' . $interro . '
                     </td>
                     <td>
-                        <form method="POST" action="CreationPdf.php"><input type="hidden" value="' . $info->IDcours . '" name="id_test" /><input type="submit" value="test"/></form>
+                        <form method="POST" action="CreationPdf.php"><input type="hidden" value="' . $info->IDcours . '" name="id_test" /><input class="btn btn-xs center-block" type="submit" value="Exporter"/></form>
                     </td>
                 </tr>';
 }
