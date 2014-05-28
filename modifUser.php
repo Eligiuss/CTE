@@ -19,7 +19,10 @@
         $password = $info->password;
         $type = $info->type;
     }
+    $id_prof = $_SESSION["ID"];
 ?>
+
+<input type="hidden" id="prof" value="<?php echo $id_prof; ?>" />
 
 <div class="nouveau">
     <div class="milieuPage">

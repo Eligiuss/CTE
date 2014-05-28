@@ -6,7 +6,10 @@
     if(!isset($_SESSION["ID"])){
         header('Location: index.php');
     }
+    
+    $id_prof = $_SESSION["ID"];
 ?>
+<input type="hidden" id="prof" value="<?php echo $id_prof; ?>" />
 <div class="nouveau">
     <div class="milieuPage">
         <h2 class="text-center">Nouveau cours</h2>
@@ -75,6 +78,7 @@
         </div>
         
         <button type="button" onclick="saveCours()" class="btn btn-success btn-lg">Sauvegarder</button>
+        <br/><br/>
     </div>
 </div>
 

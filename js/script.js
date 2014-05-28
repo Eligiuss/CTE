@@ -276,8 +276,14 @@ function delCours(id,id_interro){
 }
 
 function delUser(id){
-    var areYouSure = confirm('Voulez-vous vraiment supprimer cet utilisateur ?');
+    var prof = document.getElementById('prof').value;
+    if(id==prof){
+        alert('Impossible de supprimer votre compte.');
+        return false;
+    }
     
+    var areYouSure = confirm('Voulez-vous vraiment supprimer cet utilisateur ? Tous ses cours seront également supprimés.');
+
     if (areYouSure == true) {
         $.ajax({url: 'delUser.php',
             data:{
