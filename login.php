@@ -26,4 +26,8 @@
             exit;
         }
     }   
+    
+    $SQL2 = "INSERT INTO historique (ID,action,date) VALUES
+             ('".$_SESSION["ID"]."', 'Utilisateur ".$_SESSION["nom_user"]." connecté depuis ".$_SERVER["REMOTE_ADDR"]." ',NOW() )";
+    $rs=$cnx->query($SQL2);
 ?>
