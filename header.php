@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="css/ui-flick/jquery-ui.min.css"/>
         <link rel="stylesheet" href="css/style.css"/>
+        <link rel="icon" type="image/png" href="cte.png" />
         <script src="js/jquery-1.10.2.js"></script>
         <script src="js/jquery-ui-1.10.4.min.js"></script>
         <script src="js/jquery.ui.datepicker-fr.js"></script>
@@ -59,6 +60,7 @@
                         <h5 class="titreSection">ADMINISTRATION</h5>
                         <li <?php if (($_SERVER['PHP_SELF'] == "/CTE/user.php") || ($_SERVER['PHP_SELF'] == "/CTE/addUser.php") || ($_SERVER['PHP_SELF'] == "/CTE/modifUser.php")) echo "class='active'"; ?>><a href="user.php">Gestion des utilisateurs</a></li>
                         <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/historique.php") echo "class='active'"; ?>><a href="historique.php">Historique</a></li>
+                        <li <?php if ($_SERVER['PHP_SELF'] == "/CTE/import.php") echo "class='active'"; ?>><a href="import.php">Importer</a></li>
                         <br/>
                 <?php
                     } //FIN SECTION ADMIN

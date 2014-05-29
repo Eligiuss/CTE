@@ -69,11 +69,12 @@
         } else if ($interroChecked=='0'){
             $SQL = "DELETE FROM interro
                     WHERE ID = '".$id_interro."' ";
-            
-            $historiqueInterro = " INSERT INTO historique (ID,action,date)
-                                   VALUES ('".$_SESSION["ID"]."', 'Suppression de l\'interrogation : ".$sujet."', NOW()); ";
-        
-            $rsHistoInt=$cnx->query($historiqueInterro);
+            if($id_interro!='0'){
+                $historiqueInterro = " INSERT INTO historique (ID,action,date)
+                                       VALUES ('".$_SESSION["ID"]."', 'Suppression de l\'interrogation : ".$sujet."', NOW()); ";
+
+                $rsHistoInt=$cnx->query($historiqueInterro);
+            }
         }
         $rs=$cnx->query($SQL);
         

@@ -1,5 +1,5 @@
 <?php
-    $titre='Modifier un utilisateur';
+    $titre='Historique';
     include('header.php');
     include('connection_BDD.php');
     
