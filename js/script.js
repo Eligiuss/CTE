@@ -301,8 +301,7 @@ function delUser(id){
     }
 }
 
-function filtre()
-{
+function filtre(){
     var matiere = document.getElementById('Matiere');
     var promotion = document.getElementById('promotion');
     var professeur = document.getElementById('professeur');
@@ -311,6 +310,27 @@ function filtre()
     var professeurId = professeur.options[professeur.selectedIndex].value; 
     
     window.location.replace('search.php?matiereId='+matiereId+'&promotionId='+promotionId+'&professeurId='+professeurId+'');
+}
+
+function syllabus(){
+    var matiere = document.getElementById('matiereSyllabus'); //Le <select> matiere
+    var id_matiere = matiere.options[matiere.selectedIndex].value; //La valeur de l'option choisie
+    
+    if(id_matiere=='0'){
+        alert('Veuillez choisir une matière !');
+        return;
+    }
+    
+    var url = 'upload/'+matiere.value+'.pdf';
+    
+    $.get(url)
+    .done(function() { 
+        window.location = url;
+    }).fail(function() { 
+        alert('Il n\'existe aucun syllabus associé à cette matière.');
+        return;
+    });
+    
 }
 
 $(function() {

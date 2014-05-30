@@ -22,15 +22,15 @@
                 $rs=$cnx->query($SQL);
 
                 while($info=$rs->fetch_object()){
-                    echo '<option value="'.$info->ID.'">'.$info->nom.'</option>';
+                    echo '<option value="'.$info->nom.'">'.$info->nom.'</option>';
                 }
             ?>
         </select>
     </div>
-</div>
-
-<div class="milieuPage">
-    
+    <br/>
+    <div class="milieuPage">
+        <input type="button" class="btn btn-primary btn-lg center-block" value="Visualiser" onclick="syllabus()" />
+    </div>
 </div>
 
     
