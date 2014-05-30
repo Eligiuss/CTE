@@ -5,6 +5,11 @@
     $extension = end($temp);
 
     if($_POST["actionUpload"]=='file'){
+        $mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+        if(!in_array($_FILES['file']['type'],$mimes)){
+            echo 'Format invalide, veuillez choisir un fichier csv.';
+            exit;
+        }
         move_uploaded_file($_FILES["file"]["tmp_name"],
         "upload/" . $_FILES["file"]["name"]);
 
