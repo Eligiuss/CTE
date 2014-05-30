@@ -334,5 +334,15 @@ function syllabus(){
 }
 
 $(function() {
+    var trucDate = document.getElementById('date').value;
+    var dateSplit = trucDate.split("/");
+    var yDate = dateSplit[2];
+    var mDate = dateSplit[1];
+    var jDate = dateSplit[0];   
+    $( "#dateButoir" ).datepicker( $.datepicker.regional[ "fr" ]);
+    $( "#dateButoir" ).datepicker({minDate:new date(yDate, mDate-1, jDate)}); //marche pas
+    
+});
+$(function() {
     $( "#date" ).datepicker( $.datepicker.regional[ "fr" ] );
-  });
+});
