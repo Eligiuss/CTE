@@ -55,6 +55,7 @@
         
         $SQL2 = "DELETE FROM enseigne
                  WHERE userID='".$id."' ";
+        $rs2=$cnx->query($SQL2);
         
         if($matiere!='' && $matiere2=='' && $matiere3==''){
             $SQL3 = "INSERT INTO enseigne VALUES
@@ -72,7 +73,6 @@
                      ('".$id."', '".$matiere3Id."') ";
             $rs3=$cnx->query($SQL3);
         }
-        $rs2=$cnx->query($SQL2);
     }
     
     $rsHisto = $cnx->query($historique);

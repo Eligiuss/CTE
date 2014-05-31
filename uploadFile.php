@@ -43,8 +43,8 @@
 
         $SQL.="('".$data[$i]."')";
 
-        var_dump($SQL);
-        //$rs = $cnx->query($SQL);
+//        var_dump($SQL);
+        $rs = $cnx->query($SQL);
         echo 'Operation effectuee';
     }
     

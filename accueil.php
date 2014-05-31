@@ -9,6 +9,28 @@
     
     $id_prof = $_SESSION["ID"];
 ?>
+
+<script>
+    $(function() {
+        var trucDate = document.getElementById('date').value;
+        var dateSplit = trucDate.split("/");
+        var yDate = dateSplit[2];
+        var mDate = dateSplit[1];
+        var jDate = dateSplit[0];   
+
+
+        $( "#dateButoir" ).datepicker({ minDate: new Date(yDate, mDate - 1, jDate) });
+
+        $('#date').change(function(){
+            $('#dateButoir').datepicker('option', 'minDate', $('#date').datepicker('getDate'))
+        });
+    });
+    
+    $(function() {
+        $( "#date" ).datepicker( $.datepicker.regional[ "fr" ] );
+    });
+</script>
+
 <input type="hidden" id="prof" value="<?php echo $id_prof; ?>" />
 <div class="nouveau">
     <div class="milieuPage">
@@ -18,6 +40,11 @@
         <div class="form-group">
             <label for="date">Date</label>
             <input type="text" class="form-control" id="date"  placeholder="jj/mm/aaaa" value="<?php echo date('d/m/Y'); ?>">
+        </div>
+        
+        <div class="form-group">
+            <input type="radio" name="heure" checked value="0"> Matin
+            <input type="radio" name="heure" value="1" style="margin-left:2em"> Après-midi
         </div>
         
         <div class="form-group">

@@ -9,6 +9,7 @@
     $date = $cnx->real_escape_string($_POST["date"]);
     $promo = $cnx->real_escape_string($_POST["promo"]);
     $contenu = $cnx->real_escape_string($_POST["contenu"]);
+    $heure = $cnx->real_escape_string($_POST["heure"]);
     $travail = $cnx->real_escape_string($_POST["travail"]);
     $dateButoir = $cnx->real_escape_string($_POST["dateButoir"]);
     $sujet = $cnx->real_escape_string($_POST["sujet"]);
@@ -37,9 +38,9 @@
             $rs=$cnx->query($SQL);
         }
         
-        $SQL2 = "INSERT INTO cours (id_prof,id_matiere,id_interro,promo,travail,date,date_butoir,contenu,creation_date,last_update_date)
+        $SQL2 = "INSERT INTO cours (id_prof,id_matiere,id_interro,promo,travail,date,date_butoir,contenu,heure,creation_date,last_update_date)
                  VALUES ('".$id_prof."', '".$id_matiere."', '".mysqli_insert_id($cnx)."',
-                        '".$promo."', '".$travail."', '".$date."', '".$dateButoir."', '".$contenu."',
+                        '".$promo."', '".$travail."', '".$date."', '".$dateButoir."', '".$contenu."','".$heure."',
                         NOW(), NOW() ); ";
         
         $historique = " INSERT INTO historique (ID,action,date)
@@ -80,20 +81,20 @@
         
         if($id_interro=='0'){
             $SQL2 = "UPDATE cours
-                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
+                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',heure='".$heure."',
                          promo='".$promo."', id_interro='".mysqli_insert_id($cnx)."',
                          travail='".$travail."', date_butoir='".$dateButoir."',
                          date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";
         } else if($id_interro!='0' && $interroChecked=='1') {
             $SQL2 = "UPDATE cours
-                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',
+                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."',heure='".$heure."',
                          promo='".$promo."', travail='".$travail."', date_butoir='".$dateButoir."',
                          date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";
         } else if($id_interro!='0' && $interroChecked=='0') {
             $SQL2 = "UPDATE cours
-                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."', promo='".$promo."',
+                     SET id_prof='".$id_prof."', id_matiere='".$id_matiere."', promo='".$promo."',heure='".$heure."',
                          travail='".$travail."', id_interro='0', date_butoir='".$dateButoir."',
                          date='".$date."', contenu='".$contenu."', last_update_date=NOW()
                      WHERE ID = '".$id_cours."' ";

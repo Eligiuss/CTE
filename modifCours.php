@@ -7,7 +7,7 @@
         header('Location: index.php');
     }
     
-    $SQL = "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date_fr,contenu,travail,date_butoir,promo,id_matiere,id_interro,id_prof,creation_date,
+    $SQL = "SELECT DATE_FORMAT(date, '%d/%m/%Y') AS date_fr,contenu,heure,travail,date_butoir,promo,id_matiere,id_interro,id_prof,creation_date,
             DATE_FORMAT(creation_date, '%d/%m/%Y \à %H:%i:%S') AS creation_date_fr,
             DATE_FORMAT(last_update_date, '%d/%m/%Y \à %H:%i:%S') AS last_update_date_fr
             FROM cours
@@ -17,6 +17,7 @@
     while($info=$rs->fetch_object()) {
         $date = $info->date_fr;
         $contenu = $info->contenu;
+        $heure = $info->heure;
         $travail = $info->travail;
         $dateButoir = $info->date_butoir;
         $promo = $info->promo;
@@ -58,6 +59,26 @@
 ?>
 
 
+<script>
+    $(function() {
+        var trucDate = document.getElementById('date').value;
+        var dateSplit = trucDate.split("/");
+        var yDate = dateSplit[2];
+        var mDate = dateSplit[1];
+        var jDate = dateSplit[0];   
+
+
+        $( "#dateButoir" ).datepicker({ minDate: new Date(yDate, mDate - 1, jDate) });
+
+        $('#date').change(function(){
+            $('#dateButoir').datepicker('option', 'minDate', $('#date').datepicker('getDate'))
+        });
+    });
+    
+    $(function() {
+        $( "#date" ).datepicker( $.datepicker.regional[ "fr" ] );
+    });
+</script>
 
 <div class="nouveau">
     <div class="milieuPage">
@@ -66,10 +87,10 @@
         <div class="center-block">
             <div class="row">
                 <div class="col-xs-4" style="float:left; width:50%;">
-                  <input type="text" readonly class="form-control" value="Date de création : <?php echo $creation_date; ?> ">
+                  <input type="text" readonly class="form-control" value="Création : <?php echo $creation_date; ?> ">
                 </div>
                 <div class="col-xs-4" style="float:right; width:50%;">
-                  <input type="text" readonly class="form-control" value="Date de dernière mise à jour : <?php echo $last_update_date; ?> ">
+                  <input type="text" readonly class="form-control" value="Mis à jour : <?php echo $last_update_date; ?> ">
                 </div>
             </div>
         </div>
@@ -83,6 +104,22 @@
             <?php
                     echo '<input class="form-control" id="date" value="'.$date.'">';
             ?>
+        </div>
+        
+        <div class="form-group">
+            <label>Type</label><br/>
+            <?php
+                if($heure=='0'){
+                    echo'
+                        <input type="radio" name="heure" value="0" checked> Matin
+                        <input type="radio" name="heure" value="1" style="margin-left:2em"> Après-midi';
+                } else if ($heure=='1'){
+                    echo'
+                        <input type="radio" name="heure" value="0"> Matin
+                        <input type="radio" name="heure" value="1" checked style="margin-left:2em"> Après-midi';
+                }
+            ?>
+            <hr/>
         </div>
         
         <div class="form-group">
